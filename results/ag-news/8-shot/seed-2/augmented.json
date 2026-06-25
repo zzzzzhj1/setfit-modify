@@ -1,0 +1,208 @@
+{
+  "accuracy": 74.11842105263158,
+  "confusion_matrix": [
+    [
+      1534,
+      100,
+      133,
+      133
+    ],
+    [
+      53,
+      1779,
+      31,
+      37
+    ],
+    [
+      151,
+      20,
+      1270,
+      459
+    ],
+    [
+      174,
+      42,
+      634,
+      1050
+    ]
+  ],
+  "confusion_matrix_label_names": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "confusion_matrix_labels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "dataset": "ag_news",
+  "error_analysis": {
+    "confusions": [
+      {
+        "count": 79,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 86,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 110,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 25,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 22,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 15,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 124,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 13,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 321,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 157,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 3,
+        "true_label_name": "3"
+      },
+      {
+        "count": 26,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 3,
+        "true_label_name": "3"
+      },
+      {
+        "count": 239,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 3,
+        "true_label_name": "3"
+      }
+    ],
+    "errored_classes": {
+      "0": {
+        "count": 275,
+        "label_name": "0"
+      },
+      "1": {
+        "count": 62,
+        "label_name": "1"
+      },
+      "2": {
+        "count": 458,
+        "label_name": "2"
+      },
+      "3": {
+        "count": 422,
+        "label_name": "3"
+      }
+    },
+    "num_errors": 1217
+  },
+  "hf_dataset": "ag_news",
+  "improvement_delta": {
+    "accuracy_delta": -9.86842105263159,
+    "macro_f1_delta": -9.960825675481288,
+    "per_class_accuracy_delta": {
+      "0": -4.78947368421052,
+      "1": -3.1052631578947256,
+      "2": -9.05263157894737,
+      "3": -22.526315789473685
+    }
+  },
+  "macro_f1": 73.95062944750677,
+  "measure": "accuracy",
+  "method": "augmented",
+  "per_class_accuracy": {
+    "0": 80.73684210526316,
+    "1": 93.63157894736842,
+    "2": 66.84210526315789,
+    "3": 55.26315789473685
+  },
+  "reproducibility": {
+    "batch_size": 4,
+    "classifier": "logistic_regression",
+    "loss": "CosineSimilarityLoss",
+    "max_seq_length": 128,
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "num_epochs": 1,
+    "num_iterations": 5,
+    "seed": 2
+  },
+  "score": 74.11842105263158,
+  "seed": 2,
+  "shot": 8,
+  "synthetic_data": {
+    "num_samples": 64,
+    "preview": [
+      {
+        "label": 0,
+        "text": "Synthetic hard example for class '0': the correct label is '0', not '1, 2, 3'."
+      },
+      {
+        "label": 0,
+        "text": "Error-driven sample: this input may look similar to '1, 2, 3', but it belongs to '0'."
+      },
+      {
+        "label": 0,
+        "text": "Deterministic augmentation for '0' with challenging cues from '1, 2, 3'."
+      },
+      {
+        "label": 0,
+        "text": "Synthetic hard example for class '0': the correct label is '0', not '1, 2, 3'."
+      },
+      {
+        "label": 0,
+        "text": "Error-driven sample: this input may look similar to '1, 2, 3', but it belongs to '0'."
+      }
+    ],
+    "strategy": "error_driven_template"
+  }
+}

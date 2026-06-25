@@ -16,12 +16,12 @@ import numpy as np
 import torch
 from datasets import Dataset, concatenate_datasets, load_dataset
 from sentence_transformers import models
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, matthews_corrcoef
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 from transformers.trainer_utils import set_seed
 
 from setfit import SetFitModel, SetFitTrainer
 from setfit.data import sample_dataset
-from setfit.utils import DEV_DATASET_TO_METRIC, LOSS_NAME_TO_CLASS, TEST_DATASET_TO_METRIC
+from setfit.utils import LOSS_NAME_TO_CLASS
 
 
 # ignore all future warnings
@@ -33,14 +33,12 @@ DEFAULT_SHOTS = [4, 8, 16]
 DEFAULT_SEEDS = [0, 1, 2, 3, 4]
 METHOD_VANILLA = "vanilla"
 METHOD_RANDOM = "random_aug"
-METHOD_ERROR = "error_driven"
+METHOD_ERROR = "augmented"
 METHODS = [METHOD_VANILLA, METHOD_RANDOM, METHOD_ERROR]
 DATASET_ALIASES = {
     "sst2": ["sst2"],
     "ag_news": ["ag_news"],
     "trec": ["TREC-QC", "trec"],
-    "TREC-QC": ["TREC-QC"],
-    "SentEval-CR": ["SentEval-CR"],
     "dbpedia": ["dbpedia", "dbpedia_14"],
 }
 
@@ -48,9 +46,7 @@ DATASET_ALIASES = {
 def parse_args():
     parser = argparse.ArgumentParser(description="Run a reproducible SetFit few-shot benchmark.")
     parser.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2")
-    parser.add_argument("--datasets", nargs="+", default=None)
-    parser.add_argument("--is_dev_set", type=str_to_bool, nargs="?", const=True, default=False)
-    parser.add_argument("--is_test_set", type=str_to_bool, nargs="?", const=True, default=False)
+    parser.add_argument("--datasets", nargs="+", default=DEFAULT_DATASETS)
     parser.add_argument("--sample_sizes", "--shots", dest="sample_sizes", type=int, nargs="+", default=DEFAULT_SHOTS)
     parser.add_argument("--seeds", type=int, nargs="+", default=DEFAULT_SEEDS)
     parser.add_argument("--num_iterations", type=int, default=20)
@@ -86,29 +82,6 @@ def parse_args():
     if args.batch_size > 8:
         raise ValueError("For 4GB GPU compatibility, --batch_size must be <= 8.")
     return args
-
-
-def str_to_bool(value) -> bool:
-    if isinstance(value, bool):
-        return value
-    normalized = value.lower()
-    if normalized in {"true", "1", "yes", "y"}:
-        return True
-    if normalized in {"false", "0", "no", "n"}:
-        return False
-    raise argparse.ArgumentTypeError(f"Expected a boolean value, got {value!r}.")
-
-
-def resolve_dataset_metrics(args) -> Dict[str, str]:
-    if args.datasets is not None:
-        return {dataset: "accuracy" for dataset in args.datasets}
-    if args.is_dev_set and args.is_test_set:
-        raise ValueError("Use only one of --is_dev_set true or --is_test_set true.")
-    if args.is_dev_set:
-        return dict(DEV_DATASET_TO_METRIC)
-    if args.is_test_set:
-        return dict(TEST_DATASET_TO_METRIC)
-    return {dataset: "accuracy" for dataset in DEFAULT_DATASETS}
 
 
 def set_reproducible_seed(seed: int) -> None:
@@ -167,36 +140,8 @@ def result_path(output_dir: pathlib.Path, dataset: str, shot: int, seed: int, me
     return result_dir(output_dir, dataset, shot, seed) / f"{method}.json"
 
 
-def result_path_candidates(output_dir: pathlib.Path, dataset: str, shot: int, seed: int, method: str) -> List[pathlib.Path]:
-    paths = [result_path(output_dir, dataset, shot, seed, method)]
-    if method == METHOD_ERROR and METHOD_ERROR != "augmented":
-        paths.append(result_dir(output_dir, dataset, shot, seed) / "augmented.json")
-    return paths
-
-
-def existing_result_path(output_dir: pathlib.Path, dataset: str, shot: int, seed: int, method: str) -> Optional[pathlib.Path]:
-    for path in result_path_candidates(output_dir, dataset, shot, seed, method):
-        if path.exists():
-            return path
-    return None
-
-
 def run_is_complete(output_dir: pathlib.Path, dataset: str, shot: int, seed: int) -> bool:
-    return all(existing_result_path(output_dir, dataset, shot, seed, method) is not None for method in METHODS)
-
-
-def load_existing_result_records(output_dir: pathlib.Path, dataset: str, shot: int, seed: int) -> Optional[List[dict]]:
-    records = []
-    for method in METHODS:
-        path = existing_result_path(output_dir, dataset, shot, seed, method)
-        if path is None:
-            return None
-        try:
-            records.append(json.loads(path.read_text(encoding="utf-8")))
-        except (OSError, json.JSONDecodeError) as exc:
-            print(f"Existing result unreadable, rerunning: dataset={dataset}, shot={shot}, seed={seed}, file={path}, error={exc}")
-            return None
-    return records
+    return all(result_path(output_dir, dataset, shot, seed, method).exists() for method in METHODS)
 
 
 def to_python_list(values):
@@ -240,14 +185,14 @@ def build_model(args, train_data: Dataset) -> SetFitModel:
     return model
 
 
-def train_setfit_model(args, train_data: Dataset, eval_data: Dataset, loss_class, seed: int, metric: str):
+def train_setfit_model(args, train_data: Dataset, eval_data: Dataset, loss_class, seed: int):
     set_reproducible_seed(seed)
     model = build_model(args, train_data)
     trainer = SetFitTrainer(
         model=model,
         train_dataset=train_data,
         eval_dataset=eval_data,
-        metric=metric,
+        metric="accuracy",
         loss_class=loss_class,
         batch_size=args.batch_size,
         num_epochs=args.num_epochs,
@@ -271,7 +216,7 @@ def train_setfit_model(args, train_data: Dataset, eval_data: Dataset, loss_class
     return trainer
 
 
-def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset, metric: str) -> dict:
+def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset) -> dict:
     y_true = [json_label(label) for label in eval_data["label"]]
     y_pred = [json_label(label) for label in to_python_list(model.predict(eval_data["text"], use_labels=False))]
     labels = sorted(set(y_true) | set(y_pred), key=lambda label: str(label))
@@ -280,15 +225,6 @@ def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset, metric: str
     for idx, label in enumerate(labels):
         total = int(matrix[idx].sum())
         per_class_accuracy[str(label)] = float(matrix[idx][idx] / total * 100) if total else None
-    accuracy = float(accuracy_score(y_true, y_pred) * 100)
-    macro_f1 = float(f1_score(y_true, y_pred, average="macro", zero_division=0) * 100)
-    if metric == "matthews_correlation":
-        primary_score = float(matthews_corrcoef(y_true, y_pred) * 100)
-    elif metric == "macro_f1":
-        primary_score = macro_f1
-    else:
-        primary_score = accuracy
-
     errors = [
         {
             "text": text,
@@ -299,10 +235,8 @@ def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset, metric: str
         if true_label != pred_label
     ]
     return {
-        "score": primary_score,
-        "measure": metric,
-        "accuracy": accuracy,
-        "macro_f1": macro_f1,
+        "accuracy": float(accuracy_score(y_true, y_pred) * 100),
+        "macro_f1": float(f1_score(y_true, y_pred, average="macro", zero_division=0) * 100),
         "labels": [json_label(label) for label in labels],
         "label_names": get_label_names(labels, eval_data),
         "confusion_matrix": matrix.astype(int).tolist(),
@@ -452,8 +386,8 @@ def make_result_record(
         "shot": shot,
         "seed": seed,
         "method": method,
-        "measure": details["measure"],
-        "score": details["score"],
+        "measure": "accuracy",
+        "score": details["accuracy"],
         "accuracy": details["accuracy"],
         "macro_f1": details["macro_f1"],
         "confusion_matrix": details["confusion_matrix"],
@@ -495,9 +429,9 @@ def release_model(*objects) -> None:
         torch.cuda.empty_cache()
 
 
-def run_method(args, train_data: Dataset, test_data: Dataset, loss_class, seed: int, metric: str) -> dict:
-    trainer = train_setfit_model(args, train_data, test_data, loss_class, seed, metric)
-    details = compute_detailed_metrics(trainer.model, test_data, metric)
+def run_method(args, train_data: Dataset, test_data: Dataset, loss_class, seed: int) -> dict:
+    trainer = train_setfit_model(args, train_data, test_data, loss_class, seed)
+    details = compute_detailed_metrics(trainer.model, test_data)
     release_model(trainer)
     return details
 
@@ -512,20 +446,18 @@ def run_benchmark_case(
     shot: int,
     seed: int,
     loss_class,
-    metric: str,
 ) -> List[dict]:
     if run_is_complete(output_dir, dataset, shot, seed) and not args.override_results:
-        existing_records = load_existing_result_records(output_dir, dataset, shot, seed)
-        if existing_records is not None:
-            print(f"Skipping existing result: dataset={dataset}, shot={shot}, seed={seed}")
-            return existing_records
-
+        print(f"Skipping finished run: dataset={dataset}, shot={shot}, seed={seed}")
+        return [json.loads(path.read_text(encoding="utf-8")) for path in [
+            result_path(output_dir, dataset, shot, seed, method) for method in METHODS
+        ]]
 
     print(f"\n=== dataset={dataset} shot={shot} seed={seed} ===")
     train_data = sample_dataset(full_train_data, num_samples=shot, seed=seed).select_columns(["text", "label"])
 
     print("Training Vanilla SetFit")
-    vanilla_details = run_method(args, train_data, test_data, loss_class, seed, metric)
+    vanilla_details = run_method(args, train_data, test_data, loss_class, seed)
     vanilla_record = make_result_record(
         args,
         dataset,
@@ -553,7 +485,7 @@ def run_benchmark_case(
 
     print(f"Training Random Augmentation baseline ({len(random_synthetic)} synthetic samples)")
     random_train_data = create_augmented_train_data(train_data, random_synthetic)
-    random_details = run_method(args, random_train_data, test_data, loss_class, seed, metric)
+    random_details = run_method(args, random_train_data, test_data, loss_class, seed)
     random_record = make_result_record(
         args,
         dataset,
@@ -572,7 +504,7 @@ def run_benchmark_case(
 
     print(f"Training Error-driven Augmentation ({len(error_synthetic)} synthetic samples)")
     error_train_data = create_augmented_train_data(train_data, error_synthetic)
-    error_details = run_method(args, error_train_data, test_data, loss_class, seed, metric)
+    error_details = run_method(args, error_train_data, test_data, loss_class, seed)
     error_record = make_result_record(
         args,
         dataset,
@@ -698,9 +630,7 @@ def main():
     loss_class = LOSS_NAME_TO_CLASS[args.loss]
     all_records = []
 
-    dataset_to_metric = resolve_dataset_metrics(args)
-
-    for dataset, metric in dataset_to_metric.items():
+    for dataset in args.datasets:
         hf_dataset, full_train_data, test_data = load_setfit_dataset(dataset)
         report_class_imbalance(dataset, test_data)
         for shot in args.sample_sizes:
@@ -715,7 +645,6 @@ def main():
                     shot,
                     seed,
                     loss_class,
-                    metric,
                 )
                 all_records.extend(records)
         release_model(full_train_data, test_data)
@@ -726,3 +655,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Script was called via:
+# python run_fewshot.py --model sentence-transformers/all-MiniLM-L6-v2 --datasets sst2 ag_news trec --sample_sizes 4 8 16 --batch_size 4 --num_iterations 5 --num_epochs 1 --max_seq_length 128 --override_results

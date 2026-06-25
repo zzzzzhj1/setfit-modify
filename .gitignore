@@ -160,3 +160,6 @@ notebooks/nc_workspace/
 final_results/
 outputs/
 checkpoints/
+
+# Visual Studio local cache
+.vs/

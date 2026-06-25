@@ -1,0 +1,187 @@
+{
+  "accuracy": 84.55263157894737,
+  "confusion_matrix": [
+    [
+      1742,
+      54,
+      75,
+      29
+    ],
+    [
+      65,
+      1791,
+      38,
+      6
+    ],
+    [
+      207,
+      8,
+      1470,
+      215
+    ],
+    [
+      252,
+      22,
+      203,
+      1423
+    ]
+  ],
+  "confusion_matrix_label_names": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "confusion_matrix_labels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "dataset": "ag_news",
+  "error_analysis": {
+    "confusions": [
+      {
+        "count": 54,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 75,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 29,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 65,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 38,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 6,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 207,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 8,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 215,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 252,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 3,
+        "true_label_name": "3"
+      },
+      {
+        "count": 22,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 3,
+        "true_label_name": "3"
+      },
+      {
+        "count": 203,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 3,
+        "true_label_name": "3"
+      }
+    ],
+    "errored_classes": {
+      "0": {
+        "count": 158,
+        "label_name": "0"
+      },
+      "1": {
+        "count": 109,
+        "label_name": "1"
+      },
+      "2": {
+        "count": 430,
+        "label_name": "2"
+      },
+      "3": {
+        "count": 477,
+        "label_name": "3"
+      }
+    },
+    "num_errors": 1174
+  },
+  "hf_dataset": "ag_news",
+  "improvement_delta": {
+    "accuracy_delta": 0.0,
+    "macro_f1_delta": 0.0,
+    "per_class_accuracy_delta": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0
+    }
+  },
+  "macro_f1": 84.4827523593532,
+  "measure": "accuracy",
+  "method": "vanilla",
+  "per_class_accuracy": {
+    "0": 91.6842105263158,
+    "1": 94.26315789473684,
+    "2": 77.36842105263158,
+    "3": 74.89473684210526
+  },
+  "reproducibility": {
+    "batch_size": 4,
+    "classifier": "logistic_regression",
+    "loss": "CosineSimilarityLoss",
+    "max_seq_length": 128,
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "num_epochs": 1,
+    "num_iterations": 5,
+    "seed": 0
+  },
+  "score": 84.55263157894737,
+  "seed": 0,
+  "shot": 16,
+  "synthetic_data": {
+    "num_samples": 0,
+    "preview": [],
+    "strategy": "none"
+  }
+}

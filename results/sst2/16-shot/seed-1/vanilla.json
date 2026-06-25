@@ -1,0 +1,85 @@
+{
+  "accuracy": 66.72158154859967,
+  "confusion_matrix": [
+    [
+      619,
+      293
+    ],
+    [
+      313,
+      596
+    ]
+  ],
+  "confusion_matrix_label_names": [
+    "0",
+    "1"
+  ],
+  "confusion_matrix_labels": [
+    0,
+    1
+  ],
+  "dataset": "sst2",
+  "error_analysis": {
+    "confusions": [
+      {
+        "count": 293,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 313,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 1,
+        "true_label_name": "1"
+      }
+    ],
+    "errored_classes": {
+      "0": {
+        "count": 293,
+        "label_name": "0"
+      },
+      "1": {
+        "count": 313,
+        "label_name": "1"
+      }
+    },
+    "num_errors": 606
+  },
+  "hf_dataset": "sst2",
+  "improvement_delta": {
+    "accuracy_delta": 0.0,
+    "macro_f1_delta": 0.0,
+    "per_class_accuracy_delta": {
+      "0": 0.0,
+      "1": 0.0
+    }
+  },
+  "macro_f1": 66.71627187595762,
+  "measure": "accuracy",
+  "method": "vanilla",
+  "per_class_accuracy": {
+    "0": 67.87280701754386,
+    "1": 65.56655665566556
+  },
+  "reproducibility": {
+    "batch_size": 4,
+    "classifier": "logistic_regression",
+    "loss": "CosineSimilarityLoss",
+    "max_seq_length": 128,
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "num_epochs": 1,
+    "num_iterations": 5,
+    "seed": 1
+  },
+  "score": 66.72158154859967,
+  "seed": 1,
+  "shot": 16,
+  "synthetic_data": {
+    "num_samples": 0,
+    "preview": [],
+    "strategy": "none"
+  }
+}

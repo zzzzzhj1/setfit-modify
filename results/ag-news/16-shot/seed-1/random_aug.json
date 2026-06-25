@@ -1,0 +1,208 @@
+{
+  "accuracy": 81.57894736842105,
+  "confusion_matrix": [
+    [
+      1692,
+      64,
+      124,
+      20
+    ],
+    [
+      119,
+      1764,
+      13,
+      4
+    ],
+    [
+      238,
+      17,
+      1480,
+      165
+    ],
+    [
+      183,
+      16,
+      437,
+      1264
+    ]
+  ],
+  "confusion_matrix_label_names": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "confusion_matrix_labels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "dataset": "ag_news",
+  "error_analysis": {
+    "confusions": [
+      {
+        "count": 62,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 108,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 28,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 67,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 12,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 4,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 1,
+        "true_label_name": "1"
+      },
+      {
+        "count": 166,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 17,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 158,
+        "predicted_label": 3,
+        "predicted_label_name": "3",
+        "true_label": 2,
+        "true_label_name": "2"
+      },
+      {
+        "count": 207,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 3,
+        "true_label_name": "3"
+      },
+      {
+        "count": 26,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 3,
+        "true_label_name": "3"
+      },
+      {
+        "count": 305,
+        "predicted_label": 2,
+        "predicted_label_name": "2",
+        "true_label": 3,
+        "true_label_name": "3"
+      }
+    ],
+    "errored_classes": {
+      "0": {
+        "count": 198,
+        "label_name": "0"
+      },
+      "1": {
+        "count": 83,
+        "label_name": "1"
+      },
+      "2": {
+        "count": 341,
+        "label_name": "2"
+      },
+      "3": {
+        "count": 538,
+        "label_name": "3"
+      }
+    },
+    "num_errors": 1160
+  },
+  "hf_dataset": "ag_news",
+  "improvement_delta": {
+    "accuracy_delta": -3.1578947368420955,
+    "macro_f1_delta": -3.131847528191969,
+    "per_class_accuracy_delta": {
+      "0": -0.526315789473685,
+      "1": -2.7894736842105345,
+      "2": -4.15789473684211,
+      "3": -5.15789473684211
+    }
+  },
+  "macro_f1": 81.48957356301116,
+  "measure": "accuracy",
+  "method": "random_aug",
+  "per_class_accuracy": {
+    "0": 89.05263157894737,
+    "1": 92.84210526315789,
+    "2": 77.89473684210526,
+    "3": 66.52631578947368
+  },
+  "reproducibility": {
+    "batch_size": 4,
+    "classifier": "logistic_regression",
+    "loss": "CosineSimilarityLoss",
+    "max_seq_length": 128,
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "num_epochs": 1,
+    "num_iterations": 5,
+    "seed": 1
+  },
+  "score": 81.57894736842105,
+  "seed": 1,
+  "shot": 16,
+  "synthetic_data": {
+    "num_samples": 64,
+    "preview": [
+      {
+        "label": 1,
+        "text": "Random synthetic example for class '1'."
+      },
+      {
+        "label": 0,
+        "text": "Template augmentation sample labeled as '0'."
+      },
+      {
+        "label": 2,
+        "text": "Simple generated text associated with category '2'."
+      },
+      {
+        "label": 0,
+        "text": "Random synthetic example for class '0'."
+      },
+      {
+        "label": 3,
+        "text": "Template augmentation sample labeled as '3'."
+      }
+    ],
+    "strategy": "random_label_template"
+  }
+}

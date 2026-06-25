@@ -1,0 +1,755 @@
+{
+  "metrics": [
+    {
+      "dataset": "ag_news",
+      "mean": 59.368421052631575,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 5.8750773555348195
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 58.911910988065095,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 5.832028532071948
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 56.72368421052632,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 7.408560781500385
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 55.9935515463238,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 7.065243013548905
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 78.06842105263158,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 1.699137185313543
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 77.59323360321395,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 1.8898210441020384
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 74.28421052631579,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 2.3657075098499987
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 73.69116029431953,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 2.5318185629291583
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 71.43684210526317,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 4.936985184774351
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 71.09828311787246,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 4.992251087692263
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 83.71578947368421,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 0.8529624926398668
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 83.60682746585323,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 0.9795095067779448
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 82.0578947368421,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 1.5527876817155448
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 81.88837616288642,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 1.6339993676342603
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 82.56052631578947,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 0.903287317435228
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 82.44381417899532,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 0.9409668833636216
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 85.55,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 0.9125737552251656
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 85.48079933557086,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 0.9484511370654739
+    },
+    {
+      "dataset": "sst2",
+      "mean": 63.50356946732564,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 1.5001917575874293
+    },
+    {
+      "dataset": "sst2",
+      "mean": 63.30253834955031,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 1.6302945114900245
+    },
+    {
+      "dataset": "sst2",
+      "mean": 65.7001647446458,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 4.2792401926191665
+    },
+    {
+      "dataset": "sst2",
+      "mean": 64.42090960940999,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 6.173863197493638
+    },
+    {
+      "dataset": "sst2",
+      "mean": 58.5612300933553,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 4.6880072761655205
+    },
+    {
+      "dataset": "sst2",
+      "mean": 58.459301056751166,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 4.777602594703203
+    },
+    {
+      "dataset": "sst2",
+      "mean": 66.52388797364085,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 2.630359789169016
+    },
+    {
+      "dataset": "sst2",
+      "mean": 65.93632641640245,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 2.8400344844867633
+    },
+    {
+      "dataset": "sst2",
+      "mean": 68.68753432180121,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 5.448956658681734
+    },
+    {
+      "dataset": "sst2",
+      "mean": 67.8498668721749,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 7.01208118361462
+    },
+    {
+      "dataset": "sst2",
+      "mean": 64.2284459088413,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 5.173902873739628
+    },
+    {
+      "dataset": "sst2",
+      "mean": 63.89647592102506,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 5.3442544311978315
+    },
+    {
+      "dataset": "sst2",
+      "mean": 68.73146622734761,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 1.5998996362113218
+    },
+    {
+      "dataset": "sst2",
+      "mean": 68.64249270423477,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 1.5554438057708992
+    },
+    {
+      "dataset": "sst2",
+      "mean": 70.55464030752334,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 1.3921761973377962
+    },
+    {
+      "dataset": "sst2",
+      "mean": 70.39461116612004,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 1.5183836045964854
+    },
+    {
+      "dataset": "sst2",
+      "mean": 69.18176825919824,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 3.5655366352419207
+    },
+    {
+      "dataset": "sst2",
+      "mean": 69.138086197342,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 3.574230614402167
+    },
+    {
+      "dataset": "trec",
+      "mean": 71.44,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 4.327585932133524
+    },
+    {
+      "dataset": "trec",
+      "mean": 53.304450741145395,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 2.1900320469527226
+    },
+    {
+      "dataset": "trec",
+      "mean": 49.919999999999995,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 9.128636261786312
+    },
+    {
+      "dataset": "trec",
+      "mean": 43.31375913433595,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 4.176460194838887
+    },
+    {
+      "dataset": "trec",
+      "mean": 61.04,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 4,
+      "std": 8.674560507599216
+    },
+    {
+      "dataset": "trec",
+      "mean": 50.33436008159725,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 4,
+      "std": 1.572080534582817
+    },
+    {
+      "dataset": "trec",
+      "mean": 78.88,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 1.652876280911548
+    },
+    {
+      "dataset": "trec",
+      "mean": 63.01478040405405,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 4.464764384932444
+    },
+    {
+      "dataset": "trec",
+      "mean": 64.24,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 6.345707210390347
+    },
+    {
+      "dataset": "trec",
+      "mean": 56.76633748337128,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 4.921269814917144
+    },
+    {
+      "dataset": "trec",
+      "mean": 73.04,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 8,
+      "std": 4.541805808266137
+    },
+    {
+      "dataset": "trec",
+      "mean": 62.05428951292284,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 8,
+      "std": 1.9241250507452723
+    },
+    {
+      "dataset": "trec",
+      "mean": 82.72,
+      "method": "augmented",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 1.700588133558499
+    },
+    {
+      "dataset": "trec",
+      "mean": 67.60580868391106,
+      "method": "augmented",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 2.179443945786506
+    },
+    {
+      "dataset": "trec",
+      "mean": 76.96,
+      "method": "random_aug",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 4.0159681273635695
+    },
+    {
+      "dataset": "trec",
+      "mean": 65.4020175048585,
+      "method": "random_aug",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 3.569248219643482
+    },
+    {
+      "dataset": "trec",
+      "mean": 80.24000000000001,
+      "method": "vanilla",
+      "metric": "accuracy",
+      "shot": 16,
+      "std": 1.4099645385611597
+    },
+    {
+      "dataset": "trec",
+      "mean": 67.3204540412544,
+      "method": "vanilla",
+      "metric": "macro_f1",
+      "shot": 16,
+      "std": 2.747833375751519
+    }
+  ],
+  "shot_scaling_trend": [
+    {
+      "dataset": "ag_news",
+      "from_shot": 4,
+      "mean_accuracy_delta": 14.915789473684214,
+      "method": "augmented",
+      "to_shot": 8
+    },
+    {
+      "dataset": "ag_news",
+      "from_shot": 8,
+      "mean_accuracy_delta": 7.773684210526312,
+      "method": "augmented",
+      "to_shot": 16
+    },
+    {
+      "dataset": "ag_news",
+      "from_shot": 4,
+      "mean_accuracy_delta": 14.713157894736845,
+      "method": "random_aug",
+      "to_shot": 8
+    },
+    {
+      "dataset": "ag_news",
+      "from_shot": 8,
+      "mean_accuracy_delta": 11.123684210526307,
+      "method": "random_aug",
+      "to_shot": 16
+    },
+    {
+      "dataset": "ag_news",
+      "from_shot": 4,
+      "mean_accuracy_delta": 5.647368421052633,
+      "method": "vanilla",
+      "to_shot": 8
+    },
+    {
+      "dataset": "ag_news",
+      "from_shot": 8,
+      "mean_accuracy_delta": 1.8342105263157862,
+      "method": "vanilla",
+      "to_shot": 16
+    },
+    {
+      "dataset": "sst2",
+      "from_shot": 4,
+      "mean_accuracy_delta": 3.0203185063152134,
+      "method": "augmented",
+      "to_shot": 8
+    },
+    {
+      "dataset": "sst2",
+      "from_shot": 8,
+      "mean_accuracy_delta": 2.2075782537067568,
+      "method": "augmented",
+      "to_shot": 16
+    },
+    {
+      "dataset": "sst2",
+      "from_shot": 4,
+      "mean_accuracy_delta": 2.9873695771554054,
+      "method": "random_aug",
+      "to_shot": 8
+    },
+    {
+      "dataset": "sst2",
+      "from_shot": 8,
+      "mean_accuracy_delta": 1.8671059857221337,
+      "method": "random_aug",
+      "to_shot": 16
+    },
+    {
+      "dataset": "sst2",
+      "from_shot": 4,
+      "mean_accuracy_delta": 5.667215815485996,
+      "method": "vanilla",
+      "to_shot": 8
+    },
+    {
+      "dataset": "sst2",
+      "from_shot": 8,
+      "mean_accuracy_delta": 4.953322350356942,
+      "method": "vanilla",
+      "to_shot": 16
+    },
+    {
+      "dataset": "trec",
+      "from_shot": 4,
+      "mean_accuracy_delta": 7.439999999999998,
+      "method": "augmented",
+      "to_shot": 8
+    },
+    {
+      "dataset": "trec",
+      "from_shot": 8,
+      "mean_accuracy_delta": 3.8400000000000034,
+      "method": "augmented",
+      "to_shot": 16
+    },
+    {
+      "dataset": "trec",
+      "from_shot": 4,
+      "mean_accuracy_delta": 14.32,
+      "method": "random_aug",
+      "to_shot": 8
+    },
+    {
+      "dataset": "trec",
+      "from_shot": 8,
+      "mean_accuracy_delta": 12.719999999999999,
+      "method": "random_aug",
+      "to_shot": 16
+    },
+    {
+      "dataset": "trec",
+      "from_shot": 4,
+      "mean_accuracy_delta": 12.000000000000007,
+      "method": "vanilla",
+      "to_shot": 8
+    },
+    {
+      "dataset": "trec",
+      "from_shot": 8,
+      "mean_accuracy_delta": 7.200000000000003,
+      "method": "vanilla",
+      "to_shot": 16
+    }
+  ],
+  "summary": [
+    {
+      "dataset": "ag_news",
+      "mean": 59.368421052631575,
+      "method": "augmented",
+      "shot": 4,
+      "std": 5.8750773555348195
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 56.72368421052632,
+      "method": "random_aug",
+      "shot": 4,
+      "std": 7.408560781500385
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 78.06842105263158,
+      "method": "vanilla",
+      "shot": 4,
+      "std": 1.699137185313543
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 74.28421052631579,
+      "method": "augmented",
+      "shot": 8,
+      "std": 2.3657075098499987
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 71.43684210526317,
+      "method": "random_aug",
+      "shot": 8,
+      "std": 4.936985184774351
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 83.71578947368421,
+      "method": "vanilla",
+      "shot": 8,
+      "std": 0.8529624926398668
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 82.0578947368421,
+      "method": "augmented",
+      "shot": 16,
+      "std": 1.5527876817155448
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 82.56052631578947,
+      "method": "random_aug",
+      "shot": 16,
+      "std": 0.903287317435228
+    },
+    {
+      "dataset": "ag_news",
+      "mean": 85.55,
+      "method": "vanilla",
+      "shot": 16,
+      "std": 0.9125737552251656
+    },
+    {
+      "dataset": "sst2",
+      "mean": 63.50356946732564,
+      "method": "augmented",
+      "shot": 4,
+      "std": 1.5001917575874293
+    },
+    {
+      "dataset": "sst2",
+      "mean": 65.7001647446458,
+      "method": "random_aug",
+      "shot": 4,
+      "std": 4.2792401926191665
+    },
+    {
+      "dataset": "sst2",
+      "mean": 58.5612300933553,
+      "method": "vanilla",
+      "shot": 4,
+      "std": 4.6880072761655205
+    },
+    {
+      "dataset": "sst2",
+      "mean": 66.52388797364085,
+      "method": "augmented",
+      "shot": 8,
+      "std": 2.630359789169016
+    },
+    {
+      "dataset": "sst2",
+      "mean": 68.68753432180121,
+      "method": "random_aug",
+      "shot": 8,
+      "std": 5.448956658681734
+    },
+    {
+      "dataset": "sst2",
+      "mean": 64.2284459088413,
+      "method": "vanilla",
+      "shot": 8,
+      "std": 5.173902873739628
+    },
+    {
+      "dataset": "sst2",
+      "mean": 68.73146622734761,
+      "method": "augmented",
+      "shot": 16,
+      "std": 1.5998996362113218
+    },
+    {
+      "dataset": "sst2",
+      "mean": 70.55464030752334,
+      "method": "random_aug",
+      "shot": 16,
+      "std": 1.3921761973377962
+    },
+    {
+      "dataset": "sst2",
+      "mean": 69.18176825919824,
+      "method": "vanilla",
+      "shot": 16,
+      "std": 3.5655366352419207
+    },
+    {
+      "dataset": "trec",
+      "mean": 71.44,
+      "method": "augmented",
+      "shot": 4,
+      "std": 4.327585932133524
+    },
+    {
+      "dataset": "trec",
+      "mean": 49.919999999999995,
+      "method": "random_aug",
+      "shot": 4,
+      "std": 9.128636261786312
+    },
+    {
+      "dataset": "trec",
+      "mean": 61.04,
+      "method": "vanilla",
+      "shot": 4,
+      "std": 8.674560507599216
+    },
+    {
+      "dataset": "trec",
+      "mean": 78.88,
+      "method": "augmented",
+      "shot": 8,
+      "std": 1.652876280911548
+    },
+    {
+      "dataset": "trec",
+      "mean": 64.24,
+      "method": "random_aug",
+      "shot": 8,
+      "std": 6.345707210390347
+    },
+    {
+      "dataset": "trec",
+      "mean": 73.04,
+      "method": "vanilla",
+      "shot": 8,
+      "std": 4.541805808266137
+    },
+    {
+      "dataset": "trec",
+      "mean": 82.72,
+      "method": "augmented",
+      "shot": 16,
+      "std": 1.700588133558499
+    },
+    {
+      "dataset": "trec",
+      "mean": 76.96,
+      "method": "random_aug",
+      "shot": 16,
+      "std": 4.0159681273635695
+    },
+    {
+      "dataset": "trec",
+      "mean": 80.24000000000001,
+      "method": "vanilla",
+      "shot": 16,
+      "std": 1.4099645385611597
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "accuracy": 68.20428336079077,
+  "confusion_matrix": [
+    [
+      513,
+      399
+    ],
+    [
+      180,
+      729
+    ]
+  ],
+  "confusion_matrix_label_names": [
+    "0",
+    "1"
+  ],
+  "confusion_matrix_labels": [
+    0,
+    1
+  ],
+  "dataset": "sst2",
+  "error_analysis": {
+    "confusions": [
+      {
+        "count": 316,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 368,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 1,
+        "true_label_name": "1"
+      }
+    ],
+    "errored_classes": {
+      "0": {
+        "count": 316,
+        "label_name": "0"
+      },
+      "1": {
+        "count": 368,
+        "label_name": "1"
+      }
+    },
+    "num_errors": 684
+  },
+  "hf_dataset": "sst2",
+  "improvement_delta": {
+    "accuracy_delta": 5.766062602965398,
+    "macro_f1_delta": 5.346615839216405,
+    "per_class_accuracy_delta": {
+      "0": -9.100877192982466,
+      "1": 20.682068206820695
+    }
+  },
+  "macro_f1": 67.7505402392193,
+  "measure": "accuracy",
+  "method": "random_aug",
+  "per_class_accuracy": {
+    "0": 56.25,
+    "1": 80.19801980198021
+  },
+  "reproducibility": {
+    "batch_size": 4,
+    "classifier": "logistic_regression",
+    "loss": "CosineSimilarityLoss",
+    "max_seq_length": 128,
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "num_epochs": 1,
+    "num_iterations": 5,
+    "seed": 4
+  },
+  "score": 68.20428336079077,
+  "seed": 4,
+  "shot": 4,
+  "synthetic_data": {
+    "num_samples": 32,
+    "preview": [
+      {
+        "label": 0,
+        "text": "Random synthetic example for class '0'."
+      },
+      {
+        "label": 1,
+        "text": "Template augmentation sample labeled as '1'."
+      },
+      {
+        "label": 0,
+        "text": "Simple generated text associated with category '0'."
+      },
+      {
+        "label": 1,
+        "text": "Random synthetic example for class '1'."
+      },
+      {
+        "label": 1,
+        "text": "Template augmentation sample labeled as '1'."
+      }
+    ],
+    "strategy": "random_label_template"
+  }
+}

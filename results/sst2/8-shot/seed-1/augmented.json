@@ -1,0 +1,106 @@
+{
+  "accuracy": 64.90939044481054,
+  "confusion_matrix": [
+    [
+      615,
+      297
+    ],
+    [
+      342,
+      567
+    ]
+  ],
+  "confusion_matrix_label_names": [
+    "0",
+    "1"
+  ],
+  "confusion_matrix_labels": [
+    0,
+    1
+  ],
+  "dataset": "sst2",
+  "error_analysis": {
+    "confusions": [
+      {
+        "count": 205,
+        "predicted_label": 1,
+        "predicted_label_name": "1",
+        "true_label": 0,
+        "true_label_name": "0"
+      },
+      {
+        "count": 523,
+        "predicted_label": 0,
+        "predicted_label_name": "0",
+        "true_label": 1,
+        "true_label_name": "1"
+      }
+    ],
+    "errored_classes": {
+      "0": {
+        "count": 205,
+        "label_name": "0"
+      },
+      "1": {
+        "count": 523,
+        "label_name": "1"
+      }
+    },
+    "num_errors": 728
+  },
+  "hf_dataset": "sst2",
+  "improvement_delta": {
+    "accuracy_delta": 4.88742449203734,
+    "macro_f1_delta": 6.1451231006671065,
+    "per_class_accuracy_delta": {
+      "0": -10.08771929824563,
+      "1": 19.91199119911991
+    }
+  },
+  "macro_f1": 64.88499238171286,
+  "measure": "accuracy",
+  "method": "augmented",
+  "per_class_accuracy": {
+    "0": 67.43421052631578,
+    "1": 62.37623762376238
+  },
+  "reproducibility": {
+    "batch_size": 4,
+    "classifier": "logistic_regression",
+    "loss": "CosineSimilarityLoss",
+    "max_seq_length": 128,
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "num_epochs": 1,
+    "num_iterations": 5,
+    "seed": 1
+  },
+  "score": 64.90939044481054,
+  "seed": 1,
+  "shot": 8,
+  "synthetic_data": {
+    "num_samples": 32,
+    "preview": [
+      {
+        "label": 0,
+        "text": "Synthetic hard example for class '0': the correct label is '0', not '1'."
+      },
+      {
+        "label": 0,
+        "text": "Error-driven sample: this input may look similar to '1', but it belongs to '0'."
+      },
+      {
+        "label": 0,
+        "text": "Deterministic augmentation for '0' with challenging cues from '1'."
+      },
+      {
+        "label": 0,
+        "text": "Synthetic hard example for class '0': the correct label is '0', not '1'."
+      },
+      {
+        "label": 0,
+        "text": "Error-driven sample: this input may look similar to '1', but it belongs to '0'."
+      }
+    ],
+    "strategy": "error_driven_template"
+  }
+}
