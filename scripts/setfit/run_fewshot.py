@@ -487,19 +487,30 @@ def save_json(path: pathlib.Path, payload: dict) -> None:
         json.dump(payload, f_out, indent=2, sort_keys=True)
 
 
-def release_model(*objects) -> None:
-    for obj in objects:
-        del obj
+def cleanup_memory() -> None:
     gc.collect()
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
+    try:
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.ipc_collect()
+    except Exception:
+        pass
+
+
+def release_model(*objects) -> None:
+    del objects
+    cleanup_memory()
 
 
 def run_method(args, train_data: Dataset, test_data: Dataset, loss_class, seed: int, metric: str) -> dict:
-    trainer = train_setfit_model(args, train_data, test_data, loss_class, seed, metric)
-    details = compute_detailed_metrics(trainer.model, test_data, metric)
-    release_model(trainer)
-    return details
+    trainer = None
+    try:
+        trainer = train_setfit_model(args, train_data, test_data, loss_class, seed, metric)
+        details = compute_detailed_metrics(trainer.model, test_data, metric)
+        return details
+    finally:
+        del trainer
+        cleanup_memory()
 
 
 def run_benchmark_case(
@@ -526,6 +537,7 @@ def run_benchmark_case(
 
     print("Training Vanilla SetFit")
     vanilla_details = run_method(args, train_data, test_data, loss_class, seed, metric)
+    cleanup_memory()
     vanilla_record = make_result_record(
         args,
         dataset,
@@ -554,6 +566,7 @@ def run_benchmark_case(
     print(f"Training Random Augmentation baseline ({len(random_synthetic)} synthetic samples)")
     random_train_data = create_augmented_train_data(train_data, random_synthetic)
     random_details = run_method(args, random_train_data, test_data, loss_class, seed, metric)
+    cleanup_memory()
     random_record = make_result_record(
         args,
         dataset,
@@ -573,6 +586,7 @@ def run_benchmark_case(
     print(f"Training Error-driven Augmentation ({len(error_synthetic)} synthetic samples)")
     error_train_data = create_augmented_train_data(train_data, error_synthetic)
     error_details = run_method(args, error_train_data, test_data, loss_class, seed, metric)
+    cleanup_memory()
     error_record = make_result_record(
         args,
         dataset,
