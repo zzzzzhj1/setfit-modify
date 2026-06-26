@@ -1,0 +1,768 @@
+Final Dev 5-Seed Result Provenance
+Generated at: 2026-06-26T10:34:50+00:00
+
+Selection rule:
+- Existing results only; no training was run.
+- Keep datasets trec/sst2/ag_news, shots 4/8/16, seeds 0-4, methods vanilla/random_aug/error_driven.
+- Map old method name augmented -> error_driven.
+- Exclude scripts/results old candidates unless they are the only source for a required key.
+- Prefer per-run JSON under results/, then results_* directories, then other sources, then old candidates.
+- Use 5 seeds for every method so SST-2, TREC, and AG News compare methods fairly.
+
+Used source files:
+- results/ag-news/16-shot/seed-0/error_driven.json
+- results/ag-news/16-shot/seed-0/random_aug.json
+- results/ag-news/16-shot/seed-0/vanilla.json
+- results/ag-news/16-shot/seed-1/error_driven.json
+- results/ag-news/16-shot/seed-1/random_aug.json
+- results/ag-news/16-shot/seed-1/vanilla.json
+- results/ag-news/16-shot/seed-2/augmented.json
+- results/ag-news/16-shot/seed-2/random_aug.json
+- results/ag-news/16-shot/seed-2/vanilla.json
+- results/ag-news/16-shot/seed-3/augmented.json
+- results/ag-news/16-shot/seed-3/random_aug.json
+- results/ag-news/16-shot/seed-3/vanilla.json
+- results/ag-news/16-shot/seed-4/augmented.json
+- results/ag-news/16-shot/seed-4/random_aug.json
+- results/ag-news/16-shot/seed-4/vanilla.json
+- results/ag-news/4-shot/seed-0/error_driven.json
+- results/ag-news/4-shot/seed-0/random_aug.json
+- results/ag-news/4-shot/seed-0/vanilla.json
+- results/ag-news/4-shot/seed-1/error_driven.json
+- results/ag-news/4-shot/seed-1/random_aug.json
+- results/ag-news/4-shot/seed-1/vanilla.json
+- results/ag-news/4-shot/seed-2/error_driven.json
+- results/ag-news/4-shot/seed-2/random_aug.json
+- results/ag-news/4-shot/seed-2/vanilla.json
+- results/ag-news/4-shot/seed-3/error_driven.json
+- results/ag-news/4-shot/seed-3/random_aug.json
+- results/ag-news/4-shot/seed-3/vanilla.json
+- results/ag-news/4-shot/seed-4/error_driven.json
+- results/ag-news/4-shot/seed-4/random_aug.json
+- results/ag-news/4-shot/seed-4/vanilla.json
+- results/ag-news/8-shot/seed-0/error_driven.json
+- results/ag-news/8-shot/seed-0/random_aug.json
+- results/ag-news/8-shot/seed-0/vanilla.json
+- results/ag-news/8-shot/seed-1/error_driven.json
+- results/ag-news/8-shot/seed-1/random_aug.json
+- results/ag-news/8-shot/seed-1/vanilla.json
+- results/ag-news/8-shot/seed-2/error_driven.json
+- results/ag-news/8-shot/seed-2/random_aug.json
+- results/ag-news/8-shot/seed-2/vanilla.json
+- results/ag-news/8-shot/seed-3/error_driven.json
+- results/ag-news/8-shot/seed-3/random_aug.json
+- results/ag-news/8-shot/seed-3/vanilla.json
+- results/ag-news/8-shot/seed-4/error_driven.json
+- results/ag-news/8-shot/seed-4/random_aug.json
+- results/ag-news/8-shot/seed-4/vanilla.json
+- results/sst2/16-shot/seed-0/error_driven.json
+- results/sst2/16-shot/seed-0/random_aug.json
+- results/sst2/16-shot/seed-0/vanilla.json
+- results/sst2/16-shot/seed-1/error_driven.json
+- results/sst2/16-shot/seed-1/random_aug.json
+- results/sst2/16-shot/seed-1/vanilla.json
+- results/sst2/16-shot/seed-2/error_driven.json
+- results/sst2/16-shot/seed-2/random_aug.json
+- results/sst2/16-shot/seed-2/vanilla.json
+- results/sst2/16-shot/seed-3/error_driven.json
+- results/sst2/16-shot/seed-3/random_aug.json
+- results/sst2/16-shot/seed-3/vanilla.json
+- results/sst2/16-shot/seed-4/error_driven.json
+- results/sst2/16-shot/seed-4/random_aug.json
+- results/sst2/16-shot/seed-4/vanilla.json
+- results/sst2/4-shot/seed-0/error_driven.json
+- results/sst2/4-shot/seed-0/random_aug.json
+- results/sst2/4-shot/seed-0/vanilla.json
+- results/sst2/4-shot/seed-1/error_driven.json
+- results/sst2/4-shot/seed-1/random_aug.json
+- results/sst2/4-shot/seed-1/vanilla.json
+- results/sst2/4-shot/seed-2/error_driven.json
+- results/sst2/4-shot/seed-2/random_aug.json
+- results/sst2/4-shot/seed-2/vanilla.json
+- results/sst2/4-shot/seed-3/error_driven.json
+- results/sst2/4-shot/seed-3/random_aug.json
+- results/sst2/4-shot/seed-3/vanilla.json
+- results/sst2/4-shot/seed-4/error_driven.json
+- results/sst2/4-shot/seed-4/random_aug.json
+- results/sst2/4-shot/seed-4/vanilla.json
+- results/sst2/8-shot/seed-0/error_driven.json
+- results/sst2/8-shot/seed-0/random_aug.json
+- results/sst2/8-shot/seed-0/vanilla.json
+- results/sst2/8-shot/seed-1/error_driven.json
+- results/sst2/8-shot/seed-1/random_aug.json
+- results/sst2/8-shot/seed-1/vanilla.json
+- results/sst2/8-shot/seed-2/error_driven.json
+- results/sst2/8-shot/seed-2/random_aug.json
+- results/sst2/8-shot/seed-2/vanilla.json
+- results/sst2/8-shot/seed-3/error_driven.json
+- results/sst2/8-shot/seed-3/random_aug.json
+- results/sst2/8-shot/seed-3/vanilla.json
+- results/sst2/8-shot/seed-4/error_driven.json
+- results/sst2/8-shot/seed-4/random_aug.json
+- results/sst2/8-shot/seed-4/vanilla.json
+- results/trec/16-shot/seed-0/error_driven.json
+- results/trec/16-shot/seed-0/random_aug.json
+- results/trec/16-shot/seed-0/vanilla.json
+- results/trec/16-shot/seed-1/error_driven.json
+- results/trec/16-shot/seed-1/random_aug.json
+- results/trec/16-shot/seed-1/vanilla.json
+- results/trec/16-shot/seed-2/error_driven.json
+- results/trec/16-shot/seed-2/random_aug.json
+- results/trec/16-shot/seed-2/vanilla.json
+- results/trec/16-shot/seed-3/error_driven.json
+- results/trec/16-shot/seed-3/random_aug.json
+- results/trec/16-shot/seed-3/vanilla.json
+- results/trec/16-shot/seed-4/error_driven.json
+- results/trec/16-shot/seed-4/random_aug.json
+- results/trec/16-shot/seed-4/vanilla.json
+- results/trec/4-shot/seed-0/error_driven.json
+- results/trec/4-shot/seed-0/random_aug.json
+- results/trec/4-shot/seed-0/vanilla.json
+- results/trec/4-shot/seed-1/error_driven.json
+- results/trec/4-shot/seed-1/random_aug.json
+- results/trec/4-shot/seed-1/vanilla.json
+- results/trec/4-shot/seed-2/error_driven.json
+- results/trec/4-shot/seed-2/random_aug.json
+- results/trec/4-shot/seed-2/vanilla.json
+- results/trec/4-shot/seed-3/error_driven.json
+- results/trec/4-shot/seed-3/random_aug.json
+- results/trec/4-shot/seed-3/vanilla.json
+- results/trec/4-shot/seed-4/error_driven.json
+- results/trec/4-shot/seed-4/random_aug.json
+- results/trec/4-shot/seed-4/vanilla.json
+- results/trec/8-shot/seed-0/error_driven.json
+- results/trec/8-shot/seed-0/random_aug.json
+- results/trec/8-shot/seed-0/vanilla.json
+- results/trec/8-shot/seed-1/error_driven.json
+- results/trec/8-shot/seed-1/random_aug.json
+- results/trec/8-shot/seed-1/vanilla.json
+- results/trec/8-shot/seed-2/error_driven.json
+- results/trec/8-shot/seed-2/random_aug.json
+- results/trec/8-shot/seed-2/vanilla.json
+- results/trec/8-shot/seed-3/error_driven.json
+- results/trec/8-shot/seed-3/random_aug.json
+- results/trec/8-shot/seed-3/vanilla.json
+- results/trec/8-shot/seed-4/error_driven.json
+- results/trec/8-shot/seed-4/random_aug.json
+- results/trec/8-shot/seed-4/vanilla.json
+
+Seed counts by dataset-shot-method:
+- ag_news shot=4 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=4 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=4 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=8 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=8 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=8 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=16 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=16 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- ag_news shot=16 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=4 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=4 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=4 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=8 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=8 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=8 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=16 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=16 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- sst2 shot=16 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=4 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=4 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=4 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=8 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=8 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=8 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=16 method=error_driven: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=16 method=random_aug: seeds=[0, 1, 2, 3, 4] n=5
+- trec shot=16 method=vanilla: seeds=[0, 1, 2, 3, 4] n=5
+
+Duplicate results:
+- ('ag_news', 4, 0, 'error_driven'): chose results/ag-news/4-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/ag-news/4-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 4, 0, 'random_aug'): chose results/ag-news/4-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 4, 0, 'vanilla'): chose results/ag-news/4-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 4, 1, 'error_driven'): chose results/ag-news/4-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/ag-news/4-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 4, 1, 'random_aug'): chose results/ag-news/4-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 4, 1, 'vanilla'): chose results/ag-news/4-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 4, 2, 'error_driven'): chose results/ag-news/4-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/ag-news/4-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 4, 2, 'random_aug'): chose results/ag-news/4-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 4, 2, 'vanilla'): chose results/ag-news/4-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 4, 3, 'error_driven'): chose results/ag-news/4-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/ag-news/4-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 4, 3, 'random_aug'): chose results/ag-news/4-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 4, 3, 'vanilla'): chose results/ag-news/4-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 4, 4, 'error_driven'): chose results/ag-news/4-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/ag-news/4-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 4, 4, 'random_aug'): chose results/ag-news/4-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 4, 4, 'vanilla'): chose results/ag-news/4-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/4-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 8, 0, 'error_driven'): chose results/ag-news/8-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/ag-news/8-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 8, 0, 'random_aug'): chose results/ag-news/8-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 8, 0, 'vanilla'): chose results/ag-news/8-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 8, 1, 'error_driven'): chose results/ag-news/8-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/ag-news/8-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 8, 1, 'random_aug'): chose results/ag-news/8-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 8, 1, 'vanilla'): chose results/ag-news/8-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 8, 2, 'error_driven'): chose results/ag-news/8-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/ag-news/8-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 8, 2, 'random_aug'): chose results/ag-news/8-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 8, 2, 'vanilla'): chose results/ag-news/8-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 8, 3, 'error_driven'): chose results/ag-news/8-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/ag-news/8-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 8, 3, 'random_aug'): chose results/ag-news/8-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 8, 3, 'vanilla'): chose results/ag-news/8-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 8, 4, 'error_driven'): chose results/ag-news/8-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/ag-news/8-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 8, 4, 'random_aug'): chose results/ag-news/8-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 8, 4, 'vanilla'): chose results/ag-news/8-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/8-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 16, 0, 'error_driven'): chose results/ag-news/16-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/ag-news/16-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 16, 0, 'random_aug'): chose results/ag-news/16-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 16, 0, 'vanilla'): chose results/ag-news/16-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 16, 1, 'error_driven'): chose results/ag-news/16-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/ag-news/16-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 16, 1, 'random_aug'): chose results/ag-news/16-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 16, 1, 'vanilla'): chose results/ag-news/16-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 16, 2, 'error_driven'): chose results/ag-news/16-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 16, 2, 'random_aug'): chose results/ag-news/16-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 16, 2, 'vanilla'): chose results/ag-news/16-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 16, 3, 'error_driven'): chose results/ag-news/16-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 16, 3, 'random_aug'): chose results/ag-news/16-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 16, 3, 'vanilla'): chose results/ag-news/16-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('ag_news', 16, 4, 'error_driven'): chose results/ag-news/16-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results_ag_news_safe/raw_results.csv original_method=error_driven
+- ('ag_news', 16, 4, 'random_aug'): chose results/ag-news/16-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results_ag_news_safe/raw_results.csv original_method=random_aug
+- ('ag_news', 16, 4, 'vanilla'): chose results/ag-news/16-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_ag_news_safe/ag-news/16-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results_ag_news_safe/raw_results.csv original_method=vanilla
+- ('sst2', 4, 0, 'error_driven'): chose results/sst2/4-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/sst2/4-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 4, 0, 'random_aug'): chose results/sst2/4-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 4, 0, 'vanilla'): chose results/sst2/4-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 4, 1, 'error_driven'): chose results/sst2/4-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/sst2/4-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 4, 1, 'random_aug'): chose results/sst2/4-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 4, 1, 'vanilla'): chose results/sst2/4-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 4, 2, 'error_driven'): chose results/sst2/4-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/sst2/4-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 4, 2, 'random_aug'): chose results/sst2/4-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 4, 2, 'vanilla'): chose results/sst2/4-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 4, 3, 'error_driven'): chose results/sst2/4-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/sst2/4-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 4, 3, 'random_aug'): chose results/sst2/4-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 4, 3, 'vanilla'): chose results/sst2/4-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 4, 4, 'error_driven'): chose results/sst2/4-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/sst2/4-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 4, 4, 'random_aug'): chose results/sst2/4-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 4, 4, 'vanilla'): chose results/sst2/4-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 8, 0, 'error_driven'): chose results/sst2/8-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/sst2/8-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 8, 0, 'random_aug'): chose results/sst2/8-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 8, 0, 'vanilla'): chose results/sst2/8-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 8, 1, 'error_driven'): chose results/sst2/8-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/sst2/8-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 8, 1, 'random_aug'): chose results/sst2/8-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 8, 1, 'vanilla'): chose results/sst2/8-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 8, 2, 'error_driven'): chose results/sst2/8-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/sst2/8-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 8, 2, 'random_aug'): chose results/sst2/8-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 8, 2, 'vanilla'): chose results/sst2/8-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 8, 3, 'error_driven'): chose results/sst2/8-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/sst2/8-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 8, 3, 'random_aug'): chose results/sst2/8-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 8, 3, 'vanilla'): chose results/sst2/8-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 8, 4, 'error_driven'): chose results/sst2/8-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/sst2/8-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 8, 4, 'random_aug'): chose results/sst2/8-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 8, 4, 'vanilla'): chose results/sst2/8-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 16, 0, 'error_driven'): chose results/sst2/16-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/sst2/16-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 16, 0, 'random_aug'): chose results/sst2/16-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 16, 0, 'vanilla'): chose results/sst2/16-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 16, 1, 'error_driven'): chose results/sst2/16-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/sst2/16-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 16, 1, 'random_aug'): chose results/sst2/16-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 16, 1, 'vanilla'): chose results/sst2/16-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 16, 2, 'error_driven'): chose results/sst2/16-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/sst2/16-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 16, 2, 'random_aug'): chose results/sst2/16-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 16, 2, 'vanilla'): chose results/sst2/16-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 16, 3, 'error_driven'): chose results/sst2/16-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/sst2/16-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 16, 3, 'random_aug'): chose results/sst2/16-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 16, 3, 'vanilla'): chose results/sst2/16-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('sst2', 16, 4, 'error_driven'): chose results/sst2/16-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/sst2/16-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+  duplicate results_sst2_only/raw_results.csv original_method=error_driven
+- ('sst2', 16, 4, 'random_aug'): chose results/sst2/16-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+  duplicate results_sst2_only/raw_results.csv original_method=random_aug
+- ('sst2', 16, 4, 'vanilla'): chose results/sst2/16-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+  duplicate results_sst2_only/raw_results.csv original_method=vanilla
+- ('trec', 4, 0, 'error_driven'): chose results/trec/4-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/trec/4-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 4, 0, 'random_aug'): chose results/trec/4-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 4, 0, 'vanilla'): chose results/trec/4-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 4, 1, 'error_driven'): chose results/trec/4-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/trec/4-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 4, 1, 'random_aug'): chose results/trec/4-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 4, 1, 'vanilla'): chose results/trec/4-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 4, 2, 'error_driven'): chose results/trec/4-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/trec/4-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 4, 2, 'random_aug'): chose results/trec/4-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 4, 2, 'vanilla'): chose results/trec/4-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 4, 3, 'error_driven'): chose results/trec/4-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/trec/4-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 4, 3, 'random_aug'): chose results/trec/4-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 4, 3, 'vanilla'): chose results/trec/4-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 4, 4, 'error_driven'): chose results/trec/4-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/trec/4-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 4, 4, 'random_aug'): chose results/trec/4-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 4, 4, 'vanilla'): chose results/trec/4-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 8, 0, 'error_driven'): chose results/trec/8-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/trec/8-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 8, 0, 'random_aug'): chose results/trec/8-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 8, 0, 'vanilla'): chose results/trec/8-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 8, 1, 'error_driven'): chose results/trec/8-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/trec/8-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 8, 1, 'random_aug'): chose results/trec/8-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 8, 1, 'vanilla'): chose results/trec/8-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 8, 2, 'error_driven'): chose results/trec/8-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/trec/8-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 8, 2, 'random_aug'): chose results/trec/8-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 8, 2, 'vanilla'): chose results/trec/8-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 8, 3, 'error_driven'): chose results/trec/8-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/trec/8-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 8, 3, 'random_aug'): chose results/trec/8-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 8, 3, 'vanilla'): chose results/trec/8-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 8, 4, 'error_driven'): chose results/trec/8-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/trec/8-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 8, 4, 'random_aug'): chose results/trec/8-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 8, 4, 'vanilla'): chose results/trec/8-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 16, 0, 'error_driven'): chose results/trec/16-shot/seed-0/error_driven.json original_method=error_driven
+  duplicate results/trec/16-shot/seed-0/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 16, 0, 'random_aug'): chose results/trec/16-shot/seed-0/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 16, 0, 'vanilla'): chose results/trec/16-shot/seed-0/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 16, 1, 'error_driven'): chose results/trec/16-shot/seed-1/error_driven.json original_method=error_driven
+  duplicate results/trec/16-shot/seed-1/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 16, 1, 'random_aug'): chose results/trec/16-shot/seed-1/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 16, 1, 'vanilla'): chose results/trec/16-shot/seed-1/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 16, 2, 'error_driven'): chose results/trec/16-shot/seed-2/error_driven.json original_method=error_driven
+  duplicate results/trec/16-shot/seed-2/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 16, 2, 'random_aug'): chose results/trec/16-shot/seed-2/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 16, 2, 'vanilla'): chose results/trec/16-shot/seed-2/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 16, 3, 'error_driven'): chose results/trec/16-shot/seed-3/error_driven.json original_method=error_driven
+  duplicate results/trec/16-shot/seed-3/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 16, 3, 'random_aug'): chose results/trec/16-shot/seed-3/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 16, 3, 'vanilla'): chose results/trec/16-shot/seed-3/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+- ('trec', 16, 4, 'error_driven'): chose results/trec/16-shot/seed-4/error_driven.json original_method=error_driven
+  duplicate results/trec/16-shot/seed-4/augmented.json original_method=augmented
+  duplicate results/raw_results.csv original_method=error_driven
+- ('trec', 16, 4, 'random_aug'): chose results/trec/16-shot/seed-4/random_aug.json original_method=random_aug
+  duplicate results/raw_results.csv original_method=random_aug
+- ('trec', 16, 4, 'vanilla'): chose results/trec/16-shot/seed-4/vanilla.json original_method=vanilla
+  duplicate results/raw_results.csv original_method=vanilla
+
+Old candidates:
+- scripts/results/*.csv old candidates were not used in the final selected rows.
+
+TREC 20 seeds found: no; observed seeds=[0, 1, 2, 3, 4]
+SST-2 error_driven 10 seeds found: no; observed seeds=[0, 1, 2, 3, 4]
+
+Warnings:
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 0, 'error_driven'); chose results/ag-news/4-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 0, 'random_aug'); chose results/ag-news/4-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 0, 'vanilla'); chose results/ag-news/4-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 1, 'error_driven'); chose results/ag-news/4-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 1, 'random_aug'); chose results/ag-news/4-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 1, 'vanilla'); chose results/ag-news/4-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 2, 'error_driven'); chose results/ag-news/4-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 2, 'random_aug'); chose results/ag-news/4-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 2, 'vanilla'); chose results/ag-news/4-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 3, 'error_driven'); chose results/ag-news/4-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 3, 'random_aug'); chose results/ag-news/4-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 3, 'vanilla'); chose results/ag-news/4-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 4, 'error_driven'); chose results/ag-news/4-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 4, 'random_aug'); chose results/ag-news/4-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 4, 4, 'vanilla'); chose results/ag-news/4-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 0, 'error_driven'); chose results/ag-news/8-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 0, 'random_aug'); chose results/ag-news/8-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 0, 'vanilla'); chose results/ag-news/8-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 1, 'error_driven'); chose results/ag-news/8-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 1, 'random_aug'); chose results/ag-news/8-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 1, 'vanilla'); chose results/ag-news/8-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 2, 'error_driven'); chose results/ag-news/8-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 2, 'random_aug'); chose results/ag-news/8-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 2, 'vanilla'); chose results/ag-news/8-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 3, 'error_driven'); chose results/ag-news/8-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 3, 'random_aug'); chose results/ag-news/8-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 3, 'vanilla'); chose results/ag-news/8-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 4, 'error_driven'); chose results/ag-news/8-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 4, 'random_aug'); chose results/ag-news/8-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 8, 4, 'vanilla'); chose results/ag-news/8-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 0, 'error_driven'); chose results/ag-news/16-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 0, 'random_aug'); chose results/ag-news/16-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 0, 'vanilla'); chose results/ag-news/16-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 1, 'error_driven'); chose results/ag-news/16-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 1, 'random_aug'); chose results/ag-news/16-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 1, 'vanilla'); chose results/ag-news/16-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 2, 'error_driven'); chose results/ag-news/16-shot/seed-2/augmented.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 2, 'random_aug'); chose results/ag-news/16-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 2, 'vanilla'); chose results/ag-news/16-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 3, 'error_driven'); chose results/ag-news/16-shot/seed-3/augmented.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 3, 'random_aug'); chose results/ag-news/16-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 3, 'vanilla'); chose results/ag-news/16-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 4, 'error_driven'); chose results/ag-news/16-shot/seed-4/augmented.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 4, 'random_aug'); chose results/ag-news/16-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('ag_news', 16, 4, 'vanilla'); chose results/ag-news/16-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 0, 'error_driven'); chose results/sst2/4-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 0, 'random_aug'); chose results/sst2/4-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 0, 'vanilla'); chose results/sst2/4-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 1, 'error_driven'); chose results/sst2/4-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 1, 'random_aug'); chose results/sst2/4-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 1, 'vanilla'); chose results/sst2/4-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 2, 'error_driven'); chose results/sst2/4-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 2, 'random_aug'); chose results/sst2/4-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 2, 'vanilla'); chose results/sst2/4-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 3, 'error_driven'); chose results/sst2/4-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 3, 'random_aug'); chose results/sst2/4-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 3, 'vanilla'); chose results/sst2/4-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 4, 'error_driven'); chose results/sst2/4-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 4, 'random_aug'); chose results/sst2/4-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 4, 4, 'vanilla'); chose results/sst2/4-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 0, 'error_driven'); chose results/sst2/8-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 0, 'random_aug'); chose results/sst2/8-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 0, 'vanilla'); chose results/sst2/8-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 1, 'error_driven'); chose results/sst2/8-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 1, 'random_aug'); chose results/sst2/8-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 1, 'vanilla'); chose results/sst2/8-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 2, 'error_driven'); chose results/sst2/8-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 2, 'random_aug'); chose results/sst2/8-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 2, 'vanilla'); chose results/sst2/8-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 3, 'error_driven'); chose results/sst2/8-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 3, 'random_aug'); chose results/sst2/8-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 3, 'vanilla'); chose results/sst2/8-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 4, 'error_driven'); chose results/sst2/8-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 4, 'random_aug'); chose results/sst2/8-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 8, 4, 'vanilla'); chose results/sst2/8-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 0, 'error_driven'); chose results/sst2/16-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 0, 'random_aug'); chose results/sst2/16-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 0, 'vanilla'); chose results/sst2/16-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 1, 'error_driven'); chose results/sst2/16-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 1, 'random_aug'); chose results/sst2/16-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 1, 'vanilla'); chose results/sst2/16-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 2, 'error_driven'); chose results/sst2/16-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 2, 'random_aug'); chose results/sst2/16-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 2, 'vanilla'); chose results/sst2/16-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 3, 'error_driven'); chose results/sst2/16-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 3, 'random_aug'); chose results/sst2/16-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 3, 'vanilla'); chose results/sst2/16-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 4, 'error_driven'); chose results/sst2/16-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 4, 'random_aug'); chose results/sst2/16-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('sst2', 16, 4, 'vanilla'); chose results/sst2/16-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 0, 'error_driven'); chose results/trec/4-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 0, 'random_aug'); chose results/trec/4-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 0, 'vanilla'); chose results/trec/4-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 1, 'error_driven'); chose results/trec/4-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 1, 'random_aug'); chose results/trec/4-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 1, 'vanilla'); chose results/trec/4-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 2, 'error_driven'); chose results/trec/4-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 2, 'random_aug'); chose results/trec/4-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 2, 'vanilla'); chose results/trec/4-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 3, 'error_driven'); chose results/trec/4-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 3, 'random_aug'); chose results/trec/4-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 3, 'vanilla'); chose results/trec/4-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 4, 'error_driven'); chose results/trec/4-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 4, 'random_aug'); chose results/trec/4-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 4, 4, 'vanilla'); chose results/trec/4-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 0, 'error_driven'); chose results/trec/8-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 0, 'random_aug'); chose results/trec/8-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 0, 'vanilla'); chose results/trec/8-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 1, 'error_driven'); chose results/trec/8-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 1, 'random_aug'); chose results/trec/8-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 1, 'vanilla'); chose results/trec/8-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 2, 'error_driven'); chose results/trec/8-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 2, 'random_aug'); chose results/trec/8-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 2, 'vanilla'); chose results/trec/8-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 3, 'error_driven'); chose results/trec/8-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 3, 'random_aug'); chose results/trec/8-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 3, 'vanilla'); chose results/trec/8-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 4, 'error_driven'); chose results/trec/8-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 4, 'random_aug'); chose results/trec/8-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 8, 4, 'vanilla'); chose results/trec/8-shot/seed-4/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 0, 'error_driven'); chose results/trec/16-shot/seed-0/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 0, 'random_aug'); chose results/trec/16-shot/seed-0/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 0, 'vanilla'); chose results/trec/16-shot/seed-0/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 1, 'error_driven'); chose results/trec/16-shot/seed-1/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 1, 'random_aug'); chose results/trec/16-shot/seed-1/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 1, 'vanilla'); chose results/trec/16-shot/seed-1/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 2, 'error_driven'); chose results/trec/16-shot/seed-2/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 2, 'random_aug'); chose results/trec/16-shot/seed-2/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 2, 'vanilla'); chose results/trec/16-shot/seed-2/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 3, 'error_driven'); chose results/trec/16-shot/seed-3/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 3, 'random_aug'); chose results/trec/16-shot/seed-3/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 3, 'vanilla'); chose results/trec/16-shot/seed-3/vanilla.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 4, 'error_driven'); chose results/trec/16-shot/seed-4/error_driven.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 4, 'random_aug'); chose results/trec/16-shot/seed-4/random_aug.json
+- WARNING duplicate dataset-shot-seed-method ('trec', 16, 4, 'vanilla'); chose results/trec/16-shot/seed-4/vanilla.json

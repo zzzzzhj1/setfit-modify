@@ -1,0 +1,1746 @@
+Result Provenance Audit
+Project root: /root/autodl-tmp/setfit-modify
+Generated at: 2026-06-26T10:34:41+00:00
+
+Scope
+- CSV/JSON files scanned: 313
+- SetFit log files scanned: 48
+- This script only scans files and writes audit_results_report.txt/csv.
+
+Seed Coverage Flags
+- trec: shot=4: seeds=5 (20=no); shot=8: seeds=5 (20=no); shot=16: seeds=5 (20=no)
+- sst2: shot=4: seeds=10 (5=yes, 10=yes); shot=8: seeds=10 (5=yes, 10=yes); shot=16: seeds=10 (5=yes, 10=yes)
+- ag_news: shot=4: seeds=5 (5=yes, 10=no); shot=8: seeds=5 (5=yes, 10=no); shot=16: seeds=5 (5=yes, 10=no)
+
+Possibly Old Result Files
+- scripts/results/comparison_results.csv (under scripts/results)
+- scripts/results/raw_results.csv (under scripts/results)
+- scripts/results/summary_results.csv (under scripts/results)
+
+Files Missing Seed Field
+- results/comparison_results.csv
+- results/summary_metrics.csv
+- results/summary_results.csv
+- results/summary_table.csv
+- results_ag_news_safe/comparison_results.csv
+- results_ag_news_safe/summary_metrics.csv
+- results_ag_news_safe/summary_results.csv
+- results_ag_news_safe/summary_table.csv
+- results_sst2_only/comparison_results.csv
+- results_sst2_only/summary_results.csv
+- scripts/results/comparison_results.csv
+- scripts/results/raw_results.csv
+- scripts/results/summary_results.csv
+- results/summary.json
+- results_ag_news_safe/summary.json
+
+Dataset-Shot-Method Missing Runs
+- sst2 shot=16 method=augmented: runs=5, expected=10, seeds=0;1;2;3;4
+- sst2 shot=4 method=augmented: runs=5, expected=10, seeds=0;1;2;3;4
+- sst2 shot=8 method=augmented: runs=5, expected=10, seeds=0;1;2;3;4
+
+CSV/JSON Details
+- results/comparison_results.csv
+  kind=csv size=3543 mtime=2026-06-26T02:14:28+00:00 lines=10
+  columns=dataset;sample_size;split;n_runs;vanilla_accuracy_mean;vanilla_accuracy_std;random_aug_accuracy_mean;random_aug_accuracy_std;error_driven_accuracy_mean;error_driven_accuracy_std;random_aug_vs_vanilla_accuracy_delta;error_driven_vs_vanilla_accuracy_delta;error_driven_vs_random_aug_accuracy_delta;vanilla_macro_f1_mean;vanilla_macro_f1_std;random_aug_macro_f1_mean;random_aug_macro_f1_std;error_driven_macro_f1_mean;error_driven_macro_f1_std;random_aug_vs_vanilla_macro_f1_delta;error_driven_vs_vanilla_macro_f1_delta;error_driven_vs_random_aug_macro_f1_delta
+  unique dataset=ag_news;sst2;trec shot/sample_size=16;4;8 method=- seed=-
+- results/raw_results.csv
+  kind=csv size=66815 mtime=2026-06-26T02:14:28+00:00 lines=181
+  columns=dataset;sample_size;seed;iteration;split;method;accuracy;macro_f1;delta_vs_vanilla;delta_vs_random_aug;per_class_accuracy_delta;result_file
+  unique dataset=ag_news;sst2;trec shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=0;1;2;3;4;5;6;7;8;9
+  dataset-shot-method n_runs: ag_news|16|error_driven=5; ag_news|16|random_aug=5; ag_news|16|vanilla=5; ag_news|4|error_driven=5; ag_news|4|random_aug=5; ag_news|4|vanilla=5; ag_news|8|error_driven=5; ag_news|8|random_aug=5; ag_news|8|vanilla=5; sst2|16|error_driven=10; sst2|16|random_aug=10; sst2|16|vanilla=10; sst2|4|error_driven=10; sst2|4|random_aug=10; sst2|4|vanilla=10; sst2|8|error_driven=10; sst2|8|random_aug=10; sst2|8|vanilla=10; trec|16|error_driven=5; trec|16|random_aug=5; trec|16|vanilla=5; trec|4|error_driven=5; trec|4|random_aug=5; trec|4|vanilla=5; trec|8|error_driven=5; trec|8|random_aug=5; trec|8|vanilla=5
+- results/summary_metrics.csv
+  kind=csv size=3408 mtime=2026-06-26T02:14:28+00:00 lines=55
+  columns=dataset;shot;method;metric;mean;std
+  unique dataset=ag_news;sst2;trec shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=-
+  dataset-shot-method n_runs: ag_news|16|error_driven=2; ag_news|16|random_aug=2; ag_news|16|vanilla=2; ag_news|4|error_driven=2; ag_news|4|random_aug=2; ag_news|4|vanilla=2; ag_news|8|error_driven=2; ag_news|8|random_aug=2; ag_news|8|vanilla=2; sst2|16|error_driven=2; sst2|16|random_aug=2; sst2|16|vanilla=2; sst2|4|error_driven=2; sst2|4|random_aug=2; sst2|4|vanilla=2; sst2|8|error_driven=2; sst2|8|random_aug=2; sst2|8|vanilla=2; trec|16|error_driven=2; trec|16|random_aug=2; trec|16|vanilla=2; trec|4|error_driven=2; trec|4|random_aug=2; trec|4|vanilla=2; trec|8|error_driven=2; trec|8|random_aug=2; trec|8|vanilla=2
+- results/summary_results.csv
+  kind=csv size=4160 mtime=2026-06-26T02:14:28+00:00 lines=28
+  columns=dataset;sample_size;split;method;n_runs;accuracy_mean;accuracy_std;macro_f1_mean;macro_f1_std;delta_error_driven_vs_vanilla;delta_random_aug_vs_vanilla;delta_error_driven_vs_random_aug
+  unique dataset=ag_news;sst2;trec shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=-
+  dataset-shot-method n_runs: ag_news|16|error_driven=1; ag_news|16|random_aug=1; ag_news|16|vanilla=1; ag_news|4|error_driven=1; ag_news|4|random_aug=1; ag_news|4|vanilla=1; ag_news|8|error_driven=1; ag_news|8|random_aug=1; ag_news|8|vanilla=1; sst2|16|error_driven=1; sst2|16|random_aug=1; sst2|16|vanilla=1; sst2|4|error_driven=1; sst2|4|random_aug=1; sst2|4|vanilla=1; sst2|8|error_driven=1; sst2|8|random_aug=1; sst2|8|vanilla=1; trec|16|error_driven=1; trec|16|random_aug=1; trec|16|vanilla=1; trec|4|error_driven=1; trec|4|random_aug=1; trec|4|vanilla=1; trec|8|error_driven=1; trec|8|random_aug=1; trec|8|vanilla=1
+- results/summary_table.csv
+  kind=csv size=1421 mtime=2026-06-26T02:14:28+00:00 lines=28
+  columns=dataset;shot;method;mean;std
+  unique dataset=ag_news;sst2;trec shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=-
+  dataset-shot-method n_runs: ag_news|16|error_driven=1; ag_news|16|random_aug=1; ag_news|16|vanilla=1; ag_news|4|error_driven=1; ag_news|4|random_aug=1; ag_news|4|vanilla=1; ag_news|8|error_driven=1; ag_news|8|random_aug=1; ag_news|8|vanilla=1; sst2|16|error_driven=1; sst2|16|random_aug=1; sst2|16|vanilla=1; sst2|4|error_driven=1; sst2|4|random_aug=1; sst2|4|vanilla=1; sst2|8|error_driven=1; sst2|8|random_aug=1; sst2|8|vanilla=1; trec|16|error_driven=1; trec|16|random_aug=1; trec|16|vanilla=1; trec|4|error_driven=1; trec|4|random_aug=1; trec|4|vanilla=1; trec|8|error_driven=1; trec|8|random_aug=1; trec|8|vanilla=1
+- results_ag_news_safe/comparison_results.csv
+  kind=csv size=1597 mtime=2026-06-26T02:10:16+00:00 lines=4
+  columns=dataset;sample_size;split;n_runs;vanilla_accuracy_mean;vanilla_accuracy_std;random_aug_accuracy_mean;random_aug_accuracy_std;error_driven_accuracy_mean;error_driven_accuracy_std;random_aug_vs_vanilla_accuracy_delta;error_driven_vs_vanilla_accuracy_delta;error_driven_vs_random_aug_accuracy_delta;vanilla_macro_f1_mean;vanilla_macro_f1_std;random_aug_macro_f1_mean;random_aug_macro_f1_std;error_driven_macro_f1_mean;error_driven_macro_f1_std;random_aug_vs_vanilla_macro_f1_delta;error_driven_vs_vanilla_macro_f1_delta;error_driven_vs_random_aug_macro_f1_delta
+  unique dataset=ag_news shot/sample_size=16;4;8 method=- seed=-
+- results_ag_news_safe/raw_results.csv
+  kind=csv size=12298 mtime=2026-06-26T02:10:16+00:00 lines=46
+  columns=dataset;sample_size;seed;iteration;split;method;accuracy;macro_f1;delta_vs_vanilla;delta_vs_random_aug;per_class_accuracy_delta;result_file
+  unique dataset=ag_news shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=0;1;2;3;4
+  dataset-shot-method n_runs: ag_news|16|error_driven=5; ag_news|16|random_aug=5; ag_news|16|vanilla=5; ag_news|4|error_driven=5; ag_news|4|random_aug=5; ag_news|4|vanilla=5; ag_news|8|error_driven=5; ag_news|8|random_aug=5; ag_news|8|vanilla=5
+- results_ag_news_safe/summary_metrics.csv
+  kind=csv size=357 mtime=2026-06-26T02:10:09+00:00 lines=7
+  columns=dataset;shot;method;metric;mean;std
+  unique dataset=ag_news shot/sample_size=16 method=error_driven;random_aug;vanilla seed=-
+  dataset-shot-method n_runs: ag_news|16|error_driven=2; ag_news|16|random_aug=2; ag_news|16|vanilla=2
+- results_ag_news_safe/summary_results.csv
+  kind=csv size=1579 mtime=2026-06-26T02:10:16+00:00 lines=10
+  columns=dataset;sample_size;split;method;n_runs;accuracy_mean;accuracy_std;macro_f1_mean;macro_f1_std;delta_error_driven_vs_vanilla;delta_random_aug_vs_vanilla;delta_error_driven_vs_random_aug
+  unique dataset=ag_news shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=-
+  dataset-shot-method n_runs: ag_news|16|error_driven=1; ag_news|16|random_aug=1; ag_news|16|vanilla=1; ag_news|4|error_driven=1; ag_news|4|random_aug=1; ag_news|4|vanilla=1; ag_news|8|error_driven=1; ag_news|8|random_aug=1; ag_news|8|vanilla=1
+- results_ag_news_safe/summary_table.csv
+  kind=csv size=164 mtime=2026-06-26T02:10:09+00:00 lines=4
+  columns=dataset;shot;method;mean;std
+  unique dataset=ag_news shot/sample_size=16 method=error_driven;random_aug;vanilla seed=-
+  dataset-shot-method n_runs: ag_news|16|error_driven=1; ag_news|16|random_aug=1; ag_news|16|vanilla=1
+- results_sst2_only/comparison_results.csv
+  kind=csv size=1599 mtime=2026-06-26T01:36:22+00:00 lines=4
+  columns=dataset;sample_size;split;n_runs;vanilla_accuracy_mean;vanilla_accuracy_std;random_aug_accuracy_mean;random_aug_accuracy_std;error_driven_accuracy_mean;error_driven_accuracy_std;random_aug_vs_vanilla_accuracy_delta;error_driven_vs_vanilla_accuracy_delta;error_driven_vs_random_aug_accuracy_delta;vanilla_macro_f1_mean;vanilla_macro_f1_std;random_aug_macro_f1_mean;random_aug_macro_f1_std;error_driven_macro_f1_mean;error_driven_macro_f1_std;random_aug_vs_vanilla_macro_f1_delta;error_driven_vs_vanilla_macro_f1_delta;error_driven_vs_random_aug_macro_f1_delta
+  unique dataset=sst2 shot/sample_size=16;4;8 method=- seed=-
+- results_sst2_only/raw_results.csv
+  kind=csv size=18771 mtime=2026-06-26T01:36:22+00:00 lines=91
+  columns=dataset;sample_size;seed;iteration;split;method;accuracy;macro_f1;delta_vs_vanilla;delta_vs_random_aug;per_class_accuracy_delta;result_file
+  unique dataset=sst2 shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=0;1;2;3;4;5;6;7;8;9
+  dataset-shot-method n_runs: sst2|16|error_driven=10; sst2|16|random_aug=10; sst2|16|vanilla=10; sst2|4|error_driven=10; sst2|4|random_aug=10; sst2|4|vanilla=10; sst2|8|error_driven=10; sst2|8|random_aug=10; sst2|8|vanilla=10
+- results_sst2_only/summary_results.csv
+  kind=csv size=1569 mtime=2026-06-26T01:36:22+00:00 lines=10
+  columns=dataset;sample_size;split;method;n_runs;accuracy_mean;accuracy_std;macro_f1_mean;macro_f1_std;delta_error_driven_vs_vanilla;delta_random_aug_vs_vanilla;delta_error_driven_vs_random_aug
+  unique dataset=sst2 shot/sample_size=16;4;8 method=error_driven;random_aug;vanilla seed=-
+  dataset-shot-method n_runs: sst2|16|error_driven=1; sst2|16|random_aug=1; sst2|16|vanilla=1; sst2|4|error_driven=1; sst2|4|random_aug=1; sst2|4|vanilla=1; sst2|8|error_driven=1; sst2|8|random_aug=1; sst2|8|vanilla=1
+- scripts/results/comparison_results.csv
+  kind=csv size=560 mtime=2026-06-26T00:08:35+00:00 lines=1
+  columns=dataset;sample_size;split;n_runs;vanilla_accuracy_mean;vanilla_accuracy_std;random_aug_accuracy_mean;random_aug_accuracy_std;error_driven_accuracy_mean;error_driven_accuracy_std;random_aug_vs_vanilla_accuracy_delta;error_driven_vs_vanilla_accuracy_delta;error_driven_vs_random_aug_accuracy_delta;vanilla_macro_f1_mean;vanilla_macro_f1_std;random_aug_macro_f1_mean;random_aug_macro_f1_std;error_driven_macro_f1_mean;error_driven_macro_f1_std;random_aug_vs_vanilla_macro_f1_delta;error_driven_vs_vanilla_macro_f1_delta;error_driven_vs_random_aug_macro_f1_delta
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/results/raw_results.csv
+  kind=csv size=141 mtime=2026-06-26T00:08:35+00:00 lines=1
+  columns=dataset;sample_size;seed;iteration;split;method;accuracy;macro_f1;delta_vs_vanilla;delta_vs_random_aug;per_class_accuracy_delta;result_file
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/results/summary_results.csv
+  kind=csv size=186 mtime=2026-06-26T00:08:35+00:00 lines=1
+  columns=dataset;sample_size;split;method;n_runs;accuracy_mean;accuracy_std;macro_f1_mean;macro_f1_std;delta_error_driven_vs_vanilla;delta_random_aug_vs_vanilla;delta_error_driven_vs_random_aug
+  unique dataset=- shot/sample_size=- method=- seed=-
+- results/ag-news/16-shot/seed-0/augmented.json
+  kind=json size=4385 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=augmented seed=0
+  dataset-shot-method n_runs: ag_news|16|augmented=1
+- results/ag-news/16-shot/seed-0/error_driven.json
+  kind=json size=4412 mtime=2026-06-25T12:06:44+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=error_driven seed=0
+  dataset-shot-method n_runs: ag_news|16|error_driven=1
+- results/ag-news/16-shot/seed-0/random_aug.json
+  kind=json size=4236 mtime=2026-06-25T12:05:38+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=0
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results/ag-news/16-shot/seed-0/vanilla.json
+  kind=json size=3619 mtime=2026-06-25T12:04:32+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=0
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results/ag-news/16-shot/seed-1/augmented.json
+  kind=json size=4414 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=augmented seed=1
+  dataset-shot-method n_runs: ag_news|16|augmented=1
+- results/ag-news/16-shot/seed-1/error_driven.json
+  kind=json size=4420 mtime=2026-06-25T12:09:42+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=error_driven seed=1
+  dataset-shot-method n_runs: ag_news|16|error_driven=1
+- results/ag-news/16-shot/seed-1/random_aug.json
+  kind=json size=4237 mtime=2026-06-25T12:08:36+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=1
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results/ag-news/16-shot/seed-1/vanilla.json
+  kind=json size=3622 mtime=2026-06-25T12:07:25+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=1
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results/ag-news/16-shot/seed-2/augmented.json
+  kind=json size=4414 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=augmented seed=2
+  dataset-shot-method n_runs: ag_news|16|augmented=1
+- results/ag-news/16-shot/seed-2/random_aug.json
+  kind=json size=4238 mtime=2026-06-25T12:11:25+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=2
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results/ag-news/16-shot/seed-2/vanilla.json
+  kind=json size=3614 mtime=2026-06-25T12:10:21+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=2
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results/ag-news/16-shot/seed-3/augmented.json
+  kind=json size=4412 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=augmented seed=3
+  dataset-shot-method n_runs: ag_news|16|augmented=1
+- results/ag-news/16-shot/seed-3/random_aug.json
+  kind=json size=4194 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=3
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results/ag-news/16-shot/seed-3/vanilla.json
+  kind=json size=3604 mtime=2026-06-25T09:12:41+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=3
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results/ag-news/16-shot/seed-4/augmented.json
+  kind=json size=4398 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=augmented seed=4
+  dataset-shot-method n_runs: ag_news|16|augmented=1
+- results/ag-news/16-shot/seed-4/random_aug.json
+  kind=json size=4207 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=4
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results/ag-news/16-shot/seed-4/vanilla.json
+  kind=json size=3621 mtime=2026-06-25T09:12:41+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=4
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results/ag-news/4-shot/seed-0/augmented.json
+  kind=json size=4415 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=augmented seed=0
+  dataset-shot-method n_runs: ag_news|4|augmented=1
+- results/ag-news/4-shot/seed-0/error_driven.json
+  kind=json size=4419 mtime=2026-06-25T11:45:36+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=0
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results/ag-news/4-shot/seed-0/random_aug.json
+  kind=json size=4240 mtime=2026-06-25T11:44:53+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=0
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results/ag-news/4-shot/seed-0/vanilla.json
+  kind=json size=3619 mtime=2026-06-25T11:44:09+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=0
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results/ag-news/4-shot/seed-1/augmented.json
+  kind=json size=4408 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=augmented seed=1
+  dataset-shot-method n_runs: ag_news|4|augmented=1
+- results/ag-news/4-shot/seed-1/error_driven.json
+  kind=json size=4428 mtime=2026-06-25T11:47:27+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=1
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results/ag-news/4-shot/seed-1/random_aug.json
+  kind=json size=4237 mtime=2026-06-25T11:46:43+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=1
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results/ag-news/4-shot/seed-1/vanilla.json
+  kind=json size=3623 mtime=2026-06-25T11:45:57+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=1
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results/ag-news/4-shot/seed-2/augmented.json
+  kind=json size=4420 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=augmented seed=2
+  dataset-shot-method n_runs: ag_news|4|augmented=1
+- results/ag-news/4-shot/seed-2/error_driven.json
+  kind=json size=4424 mtime=2026-06-25T11:49:14+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=2
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results/ag-news/4-shot/seed-2/random_aug.json
+  kind=json size=4229 mtime=2026-06-25T11:48:30+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=2
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results/ag-news/4-shot/seed-2/vanilla.json
+  kind=json size=3623 mtime=2026-06-25T11:47:45+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=2
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results/ag-news/4-shot/seed-3/augmented.json
+  kind=json size=4421 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=augmented seed=3
+  dataset-shot-method n_runs: ag_news|4|augmented=1
+- results/ag-news/4-shot/seed-3/error_driven.json
+  kind=json size=4382 mtime=2026-06-25T11:51:05+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=3
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results/ag-news/4-shot/seed-3/random_aug.json
+  kind=json size=4238 mtime=2026-06-25T11:50:20+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=3
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results/ag-news/4-shot/seed-3/vanilla.json
+  kind=json size=3621 mtime=2026-06-25T11:49:33+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=3
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results/ag-news/4-shot/seed-4/augmented.json
+  kind=json size=4382 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=augmented seed=4
+  dataset-shot-method n_runs: ag_news|4|augmented=1
+- results/ag-news/4-shot/seed-4/error_driven.json
+  kind=json size=4415 mtime=2026-06-25T11:52:53+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=4
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results/ag-news/4-shot/seed-4/random_aug.json
+  kind=json size=4225 mtime=2026-06-25T11:52:09+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=4
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results/ag-news/4-shot/seed-4/vanilla.json
+  kind=json size=3621 mtime=2026-06-25T11:51:25+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=4
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results/ag-news/8-shot/seed-0/augmented.json
+  kind=json size=4415 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=augmented seed=0
+  dataset-shot-method n_runs: ag_news|8|augmented=1
+- results/ag-news/8-shot/seed-0/error_driven.json
+  kind=json size=4422 mtime=2026-06-25T11:55:00+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=0
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results/ag-news/8-shot/seed-0/random_aug.json
+  kind=json size=4214 mtime=2026-06-25T11:54:08+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=0
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results/ag-news/8-shot/seed-0/vanilla.json
+  kind=json size=3607 mtime=2026-06-25T11:53:19+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=0
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results/ag-news/8-shot/seed-1/augmented.json
+  kind=json size=4388 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=augmented seed=1
+  dataset-shot-method n_runs: ag_news|8|augmented=1
+- results/ag-news/8-shot/seed-1/error_driven.json
+  kind=json size=4420 mtime=2026-06-25T11:57:13+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=1
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results/ag-news/8-shot/seed-1/random_aug.json
+  kind=json size=4234 mtime=2026-06-25T11:56:22+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=1
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results/ag-news/8-shot/seed-1/vanilla.json
+  kind=json size=3619 mtime=2026-06-25T11:55:29+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=1
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results/ag-news/8-shot/seed-2/augmented.json
+  kind=json size=4415 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=augmented seed=2
+  dataset-shot-method n_runs: ag_news|8|augmented=1
+- results/ag-news/8-shot/seed-2/error_driven.json
+  kind=json size=4421 mtime=2026-06-25T11:59:25+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=2
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results/ag-news/8-shot/seed-2/random_aug.json
+  kind=json size=4235 mtime=2026-06-25T11:58:34+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=2
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results/ag-news/8-shot/seed-2/vanilla.json
+  kind=json size=3620 mtime=2026-06-25T11:57:43+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=2
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results/ag-news/8-shot/seed-3/augmented.json
+  kind=json size=4409 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=augmented seed=3
+  dataset-shot-method n_runs: ag_news|8|augmented=1
+- results/ag-news/8-shot/seed-3/error_driven.json
+  kind=json size=4417 mtime=2026-06-25T12:01:44+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=3
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results/ag-news/8-shot/seed-3/random_aug.json
+  kind=json size=4237 mtime=2026-06-25T12:00:50+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=3
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results/ag-news/8-shot/seed-3/vanilla.json
+  kind=json size=3621 mtime=2026-06-25T11:59:54+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=3
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results/ag-news/8-shot/seed-4/augmented.json
+  kind=json size=4417 mtime=2026-06-25T09:12:41+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=augmented seed=4
+  dataset-shot-method n_runs: ag_news|8|augmented=1
+- results/ag-news/8-shot/seed-4/error_driven.json
+  kind=json size=4418 mtime=2026-06-25T12:03:52+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=4
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results/ag-news/8-shot/seed-4/random_aug.json
+  kind=json size=4224 mtime=2026-06-25T12:03:02+00:00 lines=208
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=4
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results/ag-news/8-shot/seed-4/vanilla.json
+  kind=json size=3621 mtime=2026-06-25T12:02:13+00:00 lines=187
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=4
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results/imdb/4-shot/seed-0/error_driven.json
+  kind=json size=2295 mtime=2026-06-25T10:24:14+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=error_driven seed=0
+  dataset-shot-method n_runs: imdb|4|error_driven=1
+- results/imdb/4-shot/seed-0/random_aug.json
+  kind=json size=2140 mtime=2026-06-25T10:23:29+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=random_aug seed=0
+  dataset-shot-method n_runs: imdb|4|random_aug=1
+- results/imdb/4-shot/seed-0/vanilla.json
+  kind=json size=1569 mtime=2026-06-25T10:22:40+00:00 lines=85
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=vanilla seed=0
+  dataset-shot-method n_runs: imdb|4|vanilla=1
+- results/imdb/4-shot/seed-1/error_driven.json
+  kind=json size=2291 mtime=2026-06-25T10:26:35+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=error_driven seed=1
+  dataset-shot-method n_runs: imdb|4|error_driven=1
+- results/imdb/4-shot/seed-1/random_aug.json
+  kind=json size=2153 mtime=2026-06-25T10:25:47+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=random_aug seed=1
+  dataset-shot-method n_runs: imdb|4|random_aug=1
+- results/imdb/4-shot/seed-1/vanilla.json
+  kind=json size=1568 mtime=2026-06-25T10:24:55+00:00 lines=85
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=vanilla seed=1
+  dataset-shot-method n_runs: imdb|4|vanilla=1
+- results/imdb/4-shot/seed-2/error_driven.json
+  kind=json size=2276 mtime=2026-06-25T10:28:52+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=error_driven seed=2
+  dataset-shot-method n_runs: imdb|4|error_driven=1
+- results/imdb/4-shot/seed-2/random_aug.json
+  kind=json size=2149 mtime=2026-06-25T10:28:03+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=random_aug seed=2
+  dataset-shot-method n_runs: imdb|4|random_aug=1
+- results/imdb/4-shot/seed-2/vanilla.json
+  kind=json size=1578 mtime=2026-06-25T10:27:16+00:00 lines=85
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=imdb shot/sample_size=4 method=vanilla seed=2
+  dataset-shot-method n_runs: imdb|4|vanilla=1
+- results/sst2/16-shot/seed-0/augmented.json
+  kind=json size=2323 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=augmented seed=0
+  dataset-shot-method n_runs: sst2|16|augmented=1
+- results/sst2/16-shot/seed-0/error_driven.json
+  kind=json size=2338 mtime=2026-06-26T00:53:54+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=0
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-0/random_aug.json
+  kind=json size=2203 mtime=2026-06-26T00:53:43+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=0
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-0/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T00:53:31+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=0
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-1/augmented.json
+  kind=json size=2321 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=augmented seed=1
+  dataset-shot-method n_runs: sst2|16|augmented=1
+- results/sst2/16-shot/seed-1/error_driven.json
+  kind=json size=2368 mtime=2026-06-26T00:54:29+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=1
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-1/random_aug.json
+  kind=json size=2201 mtime=2026-06-26T00:54:17+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=1
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-1/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:54:06+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=1
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-2/augmented.json
+  kind=json size=2324 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=augmented seed=2
+  dataset-shot-method n_runs: sst2|16|augmented=1
+- results/sst2/16-shot/seed-2/error_driven.json
+  kind=json size=2353 mtime=2026-06-26T00:55:06+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=2
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-2/random_aug.json
+  kind=json size=2203 mtime=2026-06-26T00:54:54+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=2
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-2/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T00:54:41+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=2
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-3/augmented.json
+  kind=json size=2324 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=augmented seed=3
+  dataset-shot-method n_runs: sst2|16|augmented=1
+- results/sst2/16-shot/seed-3/error_driven.json
+  kind=json size=2354 mtime=2026-06-26T00:55:43+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=3
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-3/random_aug.json
+  kind=json size=2201 mtime=2026-06-26T00:55:31+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=3
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-3/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:55:17+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=3
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-4/augmented.json
+  kind=json size=2326 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=augmented seed=4
+  dataset-shot-method n_runs: sst2|16|augmented=1
+- results/sst2/16-shot/seed-4/error_driven.json
+  kind=json size=2348 mtime=2026-06-26T00:56:18+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=4
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-4/random_aug.json
+  kind=json size=2199 mtime=2026-06-26T00:56:06+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=4
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-4/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:55:53+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=4
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-5/error_driven.json
+  kind=json size=2363 mtime=2026-06-26T00:56:56+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=5
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-5/random_aug.json
+  kind=json size=2198 mtime=2026-06-26T00:56:44+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=5
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-5/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T00:56:31+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=5
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-6/error_driven.json
+  kind=json size=2346 mtime=2026-06-26T00:57:33+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=6
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-6/random_aug.json
+  kind=json size=2198 mtime=2026-06-26T00:57:20+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=6
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-6/vanilla.json
+  kind=json size=1622 mtime=2026-06-26T00:57:09+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=6
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-7/error_driven.json
+  kind=json size=2355 mtime=2026-06-26T00:58:11+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=7
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-7/random_aug.json
+  kind=json size=2199 mtime=2026-06-26T00:57:58+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=7
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-7/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:57:45+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=7
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-8/error_driven.json
+  kind=json size=2359 mtime=2026-06-26T01:31:12+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=8
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-8/random_aug.json
+  kind=json size=2200 mtime=2026-06-26T01:30:46+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=8
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-8/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T01:30:19+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=8
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/16-shot/seed-9/error_driven.json
+  kind=json size=2347 mtime=2026-06-26T01:32:52+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=error_driven seed=9
+  dataset-shot-method n_runs: sst2|16|error_driven=1
+- results/sst2/16-shot/seed-9/random_aug.json
+  kind=json size=2198 mtime=2026-06-26T01:32:27+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=random_aug seed=9
+  dataset-shot-method n_runs: sst2|16|random_aug=1
+- results/sst2/16-shot/seed-9/vanilla.json
+  kind=json size=1618 mtime=2026-06-26T01:32:01+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=16 method=vanilla seed=9
+  dataset-shot-method n_runs: sst2|16|vanilla=1
+- results/sst2/4-shot/seed-0/augmented.json
+  kind=json size=2318 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=augmented seed=0
+  dataset-shot-method n_runs: sst2|4|augmented=1
+- results/sst2/4-shot/seed-0/error_driven.json
+  kind=json size=2204 mtime=2026-06-26T00:44:29+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=0
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-0/random_aug.json
+  kind=json size=2099 mtime=2026-06-26T00:44:22+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=0
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-0/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:44:14+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=0
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-1/augmented.json
+  kind=json size=2319 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=augmented seed=1
+  dataset-shot-method n_runs: sst2|4|augmented=1
+- results/sst2/4-shot/seed-1/error_driven.json
+  kind=json size=2240 mtime=2026-06-26T00:44:53+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=1
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-1/random_aug.json
+  kind=json size=2100 mtime=2026-06-26T00:44:46+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=1
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-1/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:44:37+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=1
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-2/augmented.json
+  kind=json size=2321 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=augmented seed=2
+  dataset-shot-method n_runs: sst2|4|augmented=1
+- results/sst2/4-shot/seed-2/error_driven.json
+  kind=json size=2229 mtime=2026-06-26T00:45:17+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=2
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-2/random_aug.json
+  kind=json size=2097 mtime=2026-06-26T00:45:09+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=2
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-2/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T00:45:00+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=2
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-3/augmented.json
+  kind=json size=2321 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=augmented seed=3
+  dataset-shot-method n_runs: sst2|4|augmented=1
+- results/sst2/4-shot/seed-3/error_driven.json
+  kind=json size=2214 mtime=2026-06-26T00:45:45+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=3
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-3/random_aug.json
+  kind=json size=2099 mtime=2026-06-26T00:45:35+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=3
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-3/vanilla.json
+  kind=json size=1623 mtime=2026-06-26T00:45:26+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=3
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-4/augmented.json
+  kind=json size=2323 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=augmented seed=4
+  dataset-shot-method n_runs: sst2|4|augmented=1
+- results/sst2/4-shot/seed-4/error_driven.json
+  kind=json size=2220 mtime=2026-06-26T00:46:10+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=4
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-4/random_aug.json
+  kind=json size=2096 mtime=2026-06-26T00:46:01+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=4
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-4/vanilla.json
+  kind=json size=1621 mtime=2026-06-26T00:45:53+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=4
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-5/error_driven.json
+  kind=json size=2222 mtime=2026-06-26T00:46:36+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=5
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-5/random_aug.json
+  kind=json size=2102 mtime=2026-06-26T00:46:27+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=5
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-5/vanilla.json
+  kind=json size=1607 mtime=2026-06-26T00:46:19+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=5
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-6/error_driven.json
+  kind=json size=2215 mtime=2026-06-26T00:47:05+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=6
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-6/random_aug.json
+  kind=json size=2098 mtime=2026-06-26T00:46:55+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=6
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-6/vanilla.json
+  kind=json size=1623 mtime=2026-06-26T00:46:45+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=6
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-7/error_driven.json
+  kind=json size=2225 mtime=2026-06-26T00:47:34+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=7
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-7/random_aug.json
+  kind=json size=2102 mtime=2026-06-26T00:47:25+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=7
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-7/vanilla.json
+  kind=json size=1613 mtime=2026-06-26T00:47:14+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=7
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-8/error_driven.json
+  kind=json size=2225 mtime=2026-06-26T00:47:59+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=8
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-8/random_aug.json
+  kind=json size=2085 mtime=2026-06-26T00:47:51+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=8
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-8/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T00:47:42+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=8
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/4-shot/seed-9/error_driven.json
+  kind=json size=2209 mtime=2026-06-26T00:48:24+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=error_driven seed=9
+  dataset-shot-method n_runs: sst2|4|error_driven=1
+- results/sst2/4-shot/seed-9/random_aug.json
+  kind=json size=2095 mtime=2026-06-26T00:48:16+00:00 lines=103
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=random_aug seed=9
+  dataset-shot-method n_runs: sst2|4|random_aug=1
+- results/sst2/4-shot/seed-9/vanilla.json
+  kind=json size=1618 mtime=2026-06-26T00:48:08+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=4 method=vanilla seed=9
+  dataset-shot-method n_runs: sst2|4|vanilla=1
+- results/sst2/8-shot/seed-0/augmented.json
+  kind=json size=2324 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=augmented seed=0
+  dataset-shot-method n_runs: sst2|8|augmented=1
+- results/sst2/8-shot/seed-0/error_driven.json
+  kind=json size=2333 mtime=2026-06-26T00:48:54+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=0
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-0/random_aug.json
+  kind=json size=2199 mtime=2026-06-26T00:48:44+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=0
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-0/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:48:35+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=0
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-1/augmented.json
+  kind=json size=2319 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=augmented seed=1
+  dataset-shot-method n_runs: sst2|8|augmented=1
+- results/sst2/8-shot/seed-1/error_driven.json
+  kind=json size=2365 mtime=2026-06-26T00:49:23+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=1
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-1/random_aug.json
+  kind=json size=2196 mtime=2026-06-26T00:49:12+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=1
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-1/vanilla.json
+  kind=json size=1621 mtime=2026-06-26T00:49:04+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=1
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-2/augmented.json
+  kind=json size=2324 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=augmented seed=2
+  dataset-shot-method n_runs: sst2|8|augmented=1
+- results/sst2/8-shot/seed-2/error_driven.json
+  kind=json size=2368 mtime=2026-06-26T00:49:51+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=2
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-2/random_aug.json
+  kind=json size=2199 mtime=2026-06-26T00:49:42+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=2
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-2/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T00:49:33+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=2
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-3/augmented.json
+  kind=json size=2306 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=augmented seed=3
+  dataset-shot-method n_runs: sst2|8|augmented=1
+- results/sst2/8-shot/seed-3/error_driven.json
+  kind=json size=2354 mtime=2026-06-26T00:50:20+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=3
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-3/random_aug.json
+  kind=json size=2202 mtime=2026-06-26T00:50:11+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=3
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-3/vanilla.json
+  kind=json size=1618 mtime=2026-06-26T00:50:00+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=3
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-4/augmented.json
+  kind=json size=2320 mtime=2026-06-25T09:12:41+00:00 lines=106
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=augmented seed=4
+  dataset-shot-method n_runs: sst2|8|augmented=1
+- results/sst2/8-shot/seed-4/error_driven.json
+  kind=json size=2350 mtime=2026-06-26T00:50:50+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=4
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-4/random_aug.json
+  kind=json size=2199 mtime=2026-06-26T00:50:40+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=4
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-4/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:50:29+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=4
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-5/error_driven.json
+  kind=json size=2350 mtime=2026-06-26T00:51:20+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=5
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-5/random_aug.json
+  kind=json size=2202 mtime=2026-06-26T00:51:08+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=5
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-5/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:50:59+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=5
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-6/error_driven.json
+  kind=json size=2338 mtime=2026-06-26T00:51:49+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=6
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-6/random_aug.json
+  kind=json size=2196 mtime=2026-06-26T00:51:39+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=6
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-6/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:51:30+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=6
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-7/error_driven.json
+  kind=json size=2353 mtime=2026-06-26T00:52:18+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=7
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-7/random_aug.json
+  kind=json size=2184 mtime=2026-06-26T00:52:09+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=7
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-7/vanilla.json
+  kind=json size=1620 mtime=2026-06-26T00:51:59+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=7
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-8/error_driven.json
+  kind=json size=2360 mtime=2026-06-26T00:52:47+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=8
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-8/random_aug.json
+  kind=json size=2197 mtime=2026-06-26T00:52:37+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=8
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-8/vanilla.json
+  kind=json size=1619 mtime=2026-06-26T00:52:27+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=8
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/sst2/8-shot/seed-9/error_driven.json
+  kind=json size=2347 mtime=2026-06-26T00:53:20+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=error_driven seed=9
+  dataset-shot-method n_runs: sst2|8|error_driven=1
+- results/sst2/8-shot/seed-9/random_aug.json
+  kind=json size=2200 mtime=2026-06-26T00:53:10+00:00 lines=107
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=random_aug seed=9
+  dataset-shot-method n_runs: sst2|8|random_aug=1
+- results/sst2/8-shot/seed-9/vanilla.json
+  kind=json size=1617 mtime=2026-06-26T00:52:58+00:00 lines=86
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=sst2 shot/sample_size=8 method=vanilla seed=9
+  dataset-shot-method n_runs: sst2|8|vanilla=1
+- results/summary.json
+  kind=json size=16406 mtime=2026-06-26T02:14:28+00:00 lines=755
+  columns=metrics;shot_scaling_trend;summary
+  unique dataset=- shot/sample_size=- method=- seed=-
+- results/trec/16-shot/seed-0/augmented.json
+  kind=json size=32829 mtime=2026-06-25T09:12:41+00:00 lines=2748
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=augmented seed=0
+  dataset-shot-method n_runs: trec|16|augmented=1
+- results/trec/16-shot/seed-0/error_driven.json
+  kind=json size=33369 mtime=2026-06-25T13:55:26+00:00 lines=2830
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=error_driven seed=0
+  dataset-shot-method n_runs: trec|16|error_driven=1
+- results/trec/16-shot/seed-0/random_aug.json
+  kind=json size=32360 mtime=2026-06-25T13:49:52+00:00 lines=2737
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=random_aug seed=0
+  dataset-shot-method n_runs: trec|16|random_aug=1
+- results/trec/16-shot/seed-0/vanilla.json
+  kind=json size=32425 mtime=2026-06-25T13:44:12+00:00 lines=2809
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=vanilla seed=0
+  dataset-shot-method n_runs: trec|16|vanilla=1
+- results/trec/16-shot/seed-1/augmented.json
+  kind=json size=35709 mtime=2026-06-25T09:12:41+00:00 lines=2990
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=augmented seed=1
+  dataset-shot-method n_runs: trec|16|augmented=1
+- results/trec/16-shot/seed-1/error_driven.json
+  kind=json size=31660 mtime=2026-06-25T14:11:15+00:00 lines=2700
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=error_driven seed=1
+  dataset-shot-method n_runs: trec|16|error_driven=1
+- results/trec/16-shot/seed-1/random_aug.json
+  kind=json size=33221 mtime=2026-06-25T14:05:52+00:00 lines=2892
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=random_aug seed=1
+  dataset-shot-method n_runs: trec|16|random_aug=1
+- results/trec/16-shot/seed-1/vanilla.json
+  kind=json size=31660 mtime=2026-06-25T14:00:23+00:00 lines=2773
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=vanilla seed=1
+  dataset-shot-method n_runs: trec|16|vanilla=1
+- results/trec/16-shot/seed-2/augmented.json
+  kind=json size=34841 mtime=2026-06-25T09:12:41+00:00 lines=2951
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=augmented seed=2
+  dataset-shot-method n_runs: trec|16|augmented=1
+- results/trec/16-shot/seed-2/error_driven.json
+  kind=json size=32305 mtime=2026-06-25T14:27:15+00:00 lines=2784
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=error_driven seed=2
+  dataset-shot-method n_runs: trec|16|error_driven=1
+- results/trec/16-shot/seed-2/random_aug.json
+  kind=json size=32106 mtime=2026-06-25T14:22:01+00:00 lines=2784
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=random_aug seed=2
+  dataset-shot-method n_runs: trec|16|random_aug=1
+- results/trec/16-shot/seed-2/vanilla.json
+  kind=json size=31431 mtime=2026-06-25T14:16:19+00:00 lines=2763
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=vanilla seed=2
+  dataset-shot-method n_runs: trec|16|vanilla=1
+- results/trec/16-shot/seed-3/augmented.json
+  kind=json size=32357 mtime=2026-06-25T09:12:41+00:00 lines=2727
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=augmented seed=3
+  dataset-shot-method n_runs: trec|16|augmented=1
+- results/trec/16-shot/seed-3/error_driven.json
+  kind=json size=32657 mtime=2026-06-25T14:43:37+00:00 lines=2797
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=error_driven seed=3
+  dataset-shot-method n_runs: trec|16|error_driven=1
+- results/trec/16-shot/seed-3/random_aug.json
+  kind=json size=32367 mtime=2026-06-25T14:38:03+00:00 lines=2797
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=random_aug seed=3
+  dataset-shot-method n_runs: trec|16|random_aug=1
+- results/trec/16-shot/seed-3/vanilla.json
+  kind=json size=31732 mtime=2026-06-25T14:32:22+00:00 lines=2776
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=vanilla seed=3
+  dataset-shot-method n_runs: trec|16|vanilla=1
+- results/trec/16-shot/seed-4/augmented.json
+  kind=json size=33229 mtime=2026-06-25T09:12:41+00:00 lines=2823
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=augmented seed=4
+  dataset-shot-method n_runs: trec|16|augmented=1
+- results/trec/16-shot/seed-4/error_driven.json
+  kind=json size=33615 mtime=2026-06-25T14:59:55+00:00 lines=2901
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=error_driven seed=4
+  dataset-shot-method n_runs: trec|16|error_driven=1
+- results/trec/16-shot/seed-4/random_aug.json
+  kind=json size=32616 mtime=2026-06-25T14:54:25+00:00 lines=2805
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=random_aug seed=4
+  dataset-shot-method n_runs: trec|16|random_aug=1
+- results/trec/16-shot/seed-4/vanilla.json
+  kind=json size=31932 mtime=2026-06-25T14:48:42+00:00 lines=2783
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=16 method=vanilla seed=4
+  dataset-shot-method n_runs: trec|16|vanilla=1
+- results/trec/4-shot/seed-0/augmented.json
+  kind=json size=35444 mtime=2026-06-25T09:12:41+00:00 lines=2748
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=augmented seed=0
+  dataset-shot-method n_runs: trec|4|augmented=1
+- results/trec/4-shot/seed-0/error_driven.json
+  kind=json size=35571 mtime=2026-06-25T12:26:38+00:00 lines=2868
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=error_driven seed=0
+  dataset-shot-method n_runs: trec|4|error_driven=1
+- results/trec/4-shot/seed-0/random_aug.json
+  kind=json size=37138 mtime=2026-06-25T12:24:28+00:00 lines=3059
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=random_aug seed=0
+  dataset-shot-method n_runs: trec|4|random_aug=1
+- results/trec/4-shot/seed-0/vanilla.json
+  kind=json size=37211 mtime=2026-06-25T12:22:12+00:00 lines=3135
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=vanilla seed=0
+  dataset-shot-method n_runs: trec|4|vanilla=1
+- results/trec/4-shot/seed-1/augmented.json
+  kind=json size=34164 mtime=2026-06-25T09:12:41+00:00 lines=2755
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=augmented seed=1
+  dataset-shot-method n_runs: trec|4|augmented=1
+- results/trec/4-shot/seed-1/error_driven.json
+  kind=json size=34317 mtime=2026-06-25T12:32:28+00:00 lines=2816
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=error_driven seed=1
+  dataset-shot-method n_runs: trec|4|error_driven=1
+- results/trec/4-shot/seed-1/random_aug.json
+  kind=json size=37675 mtime=2026-06-25T12:30:19+00:00 lines=3206
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=random_aug seed=1
+  dataset-shot-method n_runs: trec|4|random_aug=1
+- results/trec/4-shot/seed-1/vanilla.json
+  kind=json size=35997 mtime=2026-06-25T12:28:06+00:00 lines=3083
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=vanilla seed=1
+  dataset-shot-method n_runs: trec|4|vanilla=1
+- results/trec/4-shot/seed-2/augmented.json
+  kind=json size=33463 mtime=2026-06-25T09:12:41+00:00 lines=2666
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=augmented seed=2
+  dataset-shot-method n_runs: trec|4|augmented=1
+- results/trec/4-shot/seed-2/error_driven.json
+  kind=json size=34943 mtime=2026-06-25T12:38:33+00:00 lines=2892
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=error_driven seed=2
+  dataset-shot-method n_runs: trec|4|error_driven=1
+- results/trec/4-shot/seed-2/random_aug.json
+  kind=json size=37462 mtime=2026-06-25T12:36:16+00:00 lines=3188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=random_aug seed=2
+  dataset-shot-method n_runs: trec|4|random_aug=1
+- results/trec/4-shot/seed-2/vanilla.json
+  kind=json size=34837 mtime=2026-06-25T12:33:57+00:00 lines=2967
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=vanilla seed=2
+  dataset-shot-method n_runs: trec|4|vanilla=1
+- results/trec/4-shot/seed-3/augmented.json
+  kind=json size=35149 mtime=2026-06-25T09:12:41+00:00 lines=2847
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=augmented seed=3
+  dataset-shot-method n_runs: trec|4|augmented=1
+- results/trec/4-shot/seed-3/error_driven.json
+  kind=json size=36933 mtime=2026-06-25T12:44:31+00:00 lines=2923
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=error_driven seed=3
+  dataset-shot-method n_runs: trec|4|error_driven=1
+- results/trec/4-shot/seed-3/random_aug.json
+  kind=json size=39299 mtime=2026-06-25T12:42:19+00:00 lines=3212
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=random_aug seed=3
+  dataset-shot-method n_runs: trec|4|random_aug=1
+- results/trec/4-shot/seed-3/vanilla.json
+  kind=json size=39477 mtime=2026-06-25T12:40:03+00:00 lines=3290
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=vanilla seed=3
+  dataset-shot-method n_runs: trec|4|vanilla=1
+- results/trec/4-shot/seed-4/augmented.json
+  kind=json size=37048 mtime=2026-06-25T09:12:41+00:00 lines=2930
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=augmented seed=4
+  dataset-shot-method n_runs: trec|4|augmented=1
+- results/trec/4-shot/seed-4/error_driven.json
+  kind=json size=38336 mtime=2026-06-25T12:50:27+00:00 lines=3101
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=error_driven seed=4
+  dataset-shot-method n_runs: trec|4|error_driven=1
+- results/trec/4-shot/seed-4/random_aug.json
+  kind=json size=38910 mtime=2026-06-25T12:48:17+00:00 lines=3199
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=random_aug seed=4
+  dataset-shot-method n_runs: trec|4|random_aug=1
+- results/trec/4-shot/seed-4/vanilla.json
+  kind=json size=39108 mtime=2026-06-25T12:45:59+00:00 lines=3278
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=4 method=vanilla seed=4
+  dataset-shot-method n_runs: trec|4|vanilla=1
+- results/trec/8-shot/seed-0/augmented.json
+  kind=json size=33965 mtime=2026-06-25T09:12:41+00:00 lines=2799
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=augmented seed=0
+  dataset-shot-method n_runs: trec|8|augmented=1
+- results/trec/8-shot/seed-0/error_driven.json
+  kind=json size=32746 mtime=2026-06-25T13:00:02+00:00 lines=2689
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=error_driven seed=0
+  dataset-shot-method n_runs: trec|8|error_driven=1
+- results/trec/8-shot/seed-0/random_aug.json
+  kind=json size=33406 mtime=2026-06-25T12:56:37+00:00 lines=2781
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=random_aug seed=0
+  dataset-shot-method n_runs: trec|8|random_aug=1
+- results/trec/8-shot/seed-0/vanilla.json
+  kind=json size=33514 mtime=2026-06-25T12:53:15+00:00 lines=2854
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=vanilla seed=0
+  dataset-shot-method n_runs: trec|8|vanilla=1
+- results/trec/8-shot/seed-1/augmented.json
+  kind=json size=34478 mtime=2026-06-25T09:12:41+00:00 lines=2820
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=augmented seed=1
+  dataset-shot-method n_runs: trec|8|augmented=1
+- results/trec/8-shot/seed-1/error_driven.json
+  kind=json size=34274 mtime=2026-06-25T13:09:49+00:00 lines=2871
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=error_driven seed=1
+  dataset-shot-method n_runs: trec|8|error_driven=1
+- results/trec/8-shot/seed-1/random_aug.json
+  kind=json size=36750 mtime=2026-06-25T13:06:21+00:00 lines=3166
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=random_aug seed=1
+  dataset-shot-method n_runs: trec|8|random_aug=1
+- results/trec/8-shot/seed-1/vanilla.json
+  kind=json size=34207 mtime=2026-06-25T13:02:53+00:00 lines=2945
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=vanilla seed=1
+  dataset-shot-method n_runs: trec|8|vanilla=1
+- results/trec/8-shot/seed-2/augmented.json
+  kind=json size=32833 mtime=2026-06-25T09:12:41+00:00 lines=2744
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=augmented seed=2
+  dataset-shot-method n_runs: trec|8|augmented=1
+- results/trec/8-shot/seed-2/error_driven.json
+  kind=json size=33449 mtime=2026-06-25T13:19:41+00:00 lines=2834
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=error_driven seed=2
+  dataset-shot-method n_runs: trec|8|error_driven=1
+- results/trec/8-shot/seed-2/random_aug.json
+  kind=json size=35072 mtime=2026-06-25T13:16:15+00:00 lines=3028
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=random_aug seed=2
+  dataset-shot-method n_runs: trec|8|random_aug=1
+- results/trec/8-shot/seed-2/vanilla.json
+  kind=json size=33396 mtime=2026-06-25T13:12:40+00:00 lines=2908
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=vanilla seed=2
+  dataset-shot-method n_runs: trec|8|vanilla=1
+- results/trec/8-shot/seed-3/augmented.json
+  kind=json size=35208 mtime=2026-06-25T09:12:41+00:00 lines=2906
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=augmented seed=3
+  dataset-shot-method n_runs: trec|8|augmented=1
+- results/trec/8-shot/seed-3/error_driven.json
+  kind=json size=35080 mtime=2026-06-25T13:29:27+00:00 lines=2896
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=error_driven seed=3
+  dataset-shot-method n_runs: trec|8|error_driven=1
+- results/trec/8-shot/seed-3/random_aug.json
+  kind=json size=35618 mtime=2026-06-25T13:25:58+00:00 lines=2993
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=random_aug seed=3
+  dataset-shot-method n_runs: trec|8|random_aug=1
+- results/trec/8-shot/seed-3/vanilla.json
+  kind=json size=34899 mtime=2026-06-25T13:22:28+00:00 lines=2971
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=vanilla seed=3
+  dataset-shot-method n_runs: trec|8|vanilla=1
+- results/trec/8-shot/seed-4/augmented.json
+  kind=json size=35049 mtime=2026-06-25T09:12:41+00:00 lines=2958
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=augmented seed=4
+  dataset-shot-method n_runs: trec|8|augmented=1
+- results/trec/8-shot/seed-4/error_driven.json
+  kind=json size=35014 mtime=2026-06-25T13:39:05+00:00 lines=2901
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=error_driven seed=4
+  dataset-shot-method n_runs: trec|8|error_driven=1
+- results/trec/8-shot/seed-4/random_aug.json
+  kind=json size=36538 mtime=2026-06-25T13:35:49+00:00 lines=3095
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=random_aug seed=4
+  dataset-shot-method n_runs: trec|8|random_aug=1
+- results/trec/8-shot/seed-4/vanilla.json
+  kind=json size=34963 mtime=2026-06-25T13:32:19+00:00 lines=2975
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=trec shot/sample_size=8 method=vanilla seed=4
+  dataset-shot-method n_runs: trec|8|vanilla=1
+- results_ag_news_safe/ag-news/16-shot/seed-0/error_driven.json
+  kind=json size=4433 mtime=2026-06-26T02:03:27+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=error_driven seed=0
+  dataset-shot-method n_runs: ag_news|16|error_driven=1
+- results_ag_news_safe/ag-news/16-shot/seed-0/random_aug.json
+  kind=json size=4241 mtime=2026-06-26T02:03:05+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=0
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results_ag_news_safe/ag-news/16-shot/seed-0/vanilla.json
+  kind=json size=3632 mtime=2026-06-26T02:02:43+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=0
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results_ag_news_safe/ag-news/16-shot/seed-1/error_driven.json
+  kind=json size=4460 mtime=2026-06-26T02:05:03+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=error_driven seed=1
+  dataset-shot-method n_runs: ag_news|16|error_driven=1
+- results_ag_news_safe/ag-news/16-shot/seed-1/random_aug.json
+  kind=json size=4247 mtime=2026-06-26T02:04:41+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=1
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results_ag_news_safe/ag-news/16-shot/seed-1/vanilla.json
+  kind=json size=3647 mtime=2026-06-26T02:04:19+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=1
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results_ag_news_safe/ag-news/16-shot/seed-2/error_driven.json
+  kind=json size=4445 mtime=2026-06-26T02:06:44+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=error_driven seed=2
+  dataset-shot-method n_runs: ag_news|16|error_driven=1
+- results_ag_news_safe/ag-news/16-shot/seed-2/random_aug.json
+  kind=json size=4266 mtime=2026-06-26T02:06:21+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=2
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results_ag_news_safe/ag-news/16-shot/seed-2/vanilla.json
+  kind=json size=3649 mtime=2026-06-26T02:05:59+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=2
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results_ag_news_safe/ag-news/16-shot/seed-3/error_driven.json
+  kind=json size=4456 mtime=2026-06-26T02:08:22+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=error_driven seed=3
+  dataset-shot-method n_runs: ag_news|16|error_driven=1
+- results_ag_news_safe/ag-news/16-shot/seed-3/random_aug.json
+  kind=json size=4266 mtime=2026-06-26T02:07:59+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=3
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results_ag_news_safe/ag-news/16-shot/seed-3/vanilla.json
+  kind=json size=3634 mtime=2026-06-26T02:07:38+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=3
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results_ag_news_safe/ag-news/16-shot/seed-4/error_driven.json
+  kind=json size=4449 mtime=2026-06-26T02:10:09+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=error_driven seed=4
+  dataset-shot-method n_runs: ag_news|16|error_driven=1
+- results_ag_news_safe/ag-news/16-shot/seed-4/random_aug.json
+  kind=json size=4262 mtime=2026-06-26T02:09:45+00:00 lines=209
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=random_aug seed=4
+  dataset-shot-method n_runs: ag_news|16|random_aug=1
+- results_ag_news_safe/ag-news/16-shot/seed-4/vanilla.json
+  kind=json size=3650 mtime=2026-06-26T02:09:21+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=16 method=vanilla seed=4
+  dataset-shot-method n_runs: ag_news|16|vanilla=1
+- results_ag_news_safe/ag-news/4-shot/seed-0/error_driven.json
+  kind=json size=3893 mtime=2026-06-26T01:50:19+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=0
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results_ag_news_safe/ag-news/4-shot/seed-0/random_aug.json
+  kind=json size=3860 mtime=2026-06-26T01:50:04+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=0
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results_ag_news_safe/ag-news/4-shot/seed-0/vanilla.json
+  kind=json size=3647 mtime=2026-06-26T01:49:49+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=0
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results_ag_news_safe/ag-news/4-shot/seed-1/error_driven.json
+  kind=json size=3890 mtime=2026-06-26T01:51:28+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=1
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results_ag_news_safe/ag-news/4-shot/seed-1/random_aug.json
+  kind=json size=3861 mtime=2026-06-26T01:51:14+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=1
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results_ag_news_safe/ag-news/4-shot/seed-1/vanilla.json
+  kind=json size=3652 mtime=2026-06-26T01:51:02+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=1
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results_ag_news_safe/ag-news/4-shot/seed-2/error_driven.json
+  kind=json size=3906 mtime=2026-06-26T01:52:40+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=2
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results_ag_news_safe/ag-news/4-shot/seed-2/random_aug.json
+  kind=json size=3857 mtime=2026-06-26T01:52:28+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=2
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results_ag_news_safe/ag-news/4-shot/seed-2/vanilla.json
+  kind=json size=3648 mtime=2026-06-26T01:52:15+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=2
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results_ag_news_safe/ag-news/4-shot/seed-3/error_driven.json
+  kind=json size=3902 mtime=2026-06-26T01:53:52+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=3
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results_ag_news_safe/ag-news/4-shot/seed-3/random_aug.json
+  kind=json size=3856 mtime=2026-06-26T01:53:39+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=3
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results_ag_news_safe/ag-news/4-shot/seed-3/vanilla.json
+  kind=json size=3650 mtime=2026-06-26T01:53:24+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=3
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results_ag_news_safe/ag-news/4-shot/seed-4/error_driven.json
+  kind=json size=3902 mtime=2026-06-26T01:55:06+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=error_driven seed=4
+  dataset-shot-method n_runs: ag_news|4|error_driven=1
+- results_ag_news_safe/ag-news/4-shot/seed-4/random_aug.json
+  kind=json size=3857 mtime=2026-06-26T01:54:53+00:00 lines=193
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=random_aug seed=4
+  dataset-shot-method n_runs: ag_news|4|random_aug=1
+- results_ag_news_safe/ag-news/4-shot/seed-4/vanilla.json
+  kind=json size=3648 mtime=2026-06-26T01:54:42+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=4 method=vanilla seed=4
+  dataset-shot-method n_runs: ag_news|4|vanilla=1
+- results_ag_news_safe/ag-news/8-shot/seed-0/error_driven.json
+  kind=json size=4175 mtime=2026-06-26T01:56:22+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=0
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results_ag_news_safe/ag-news/8-shot/seed-0/random_aug.json
+  kind=json size=4062 mtime=2026-06-26T01:56:07+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=0
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results_ag_news_safe/ag-news/8-shot/seed-0/vanilla.json
+  kind=json size=3647 mtime=2026-06-26T01:55:52+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=0
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results_ag_news_safe/ag-news/8-shot/seed-1/error_driven.json
+  kind=json size=4185 mtime=2026-06-26T01:57:47+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=1
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results_ag_news_safe/ag-news/8-shot/seed-1/random_aug.json
+  kind=json size=4053 mtime=2026-06-26T01:57:28+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=1
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results_ag_news_safe/ag-news/8-shot/seed-1/vanilla.json
+  kind=json size=3647 mtime=2026-06-26T01:57:11+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=1
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results_ag_news_safe/ag-news/8-shot/seed-2/error_driven.json
+  kind=json size=4177 mtime=2026-06-26T01:59:08+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=2
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results_ag_news_safe/ag-news/8-shot/seed-2/random_aug.json
+  kind=json size=3972 mtime=2026-06-26T01:58:52+00:00 lines=197
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=2
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results_ag_news_safe/ag-news/8-shot/seed-2/vanilla.json
+  kind=json size=3649 mtime=2026-06-26T01:58:36+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=2
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results_ag_news_safe/ag-news/8-shot/seed-3/error_driven.json
+  kind=json size=4170 mtime=2026-06-26T02:00:29+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=3
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results_ag_news_safe/ag-news/8-shot/seed-3/random_aug.json
+  kind=json size=4066 mtime=2026-06-26T02:00:13+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=3
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results_ag_news_safe/ag-news/8-shot/seed-3/vanilla.json
+  kind=json size=3649 mtime=2026-06-26T01:59:56+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=3
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results_ag_news_safe/ag-news/8-shot/seed-4/error_driven.json
+  kind=json size=4165 mtime=2026-06-26T02:01:47+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=error_driven seed=4
+  dataset-shot-method n_runs: ag_news|8|error_driven=1
+- results_ag_news_safe/ag-news/8-shot/seed-4/random_aug.json
+  kind=json size=4069 mtime=2026-06-26T02:01:30+00:00 lines=201
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=random_aug seed=4
+  dataset-shot-method n_runs: ag_news|8|random_aug=1
+- results_ag_news_safe/ag-news/8-shot/seed-4/vanilla.json
+  kind=json size=3647 mtime=2026-06-26T02:01:14+00:00 lines=188
+  columns=accuracy;confusion_matrix;confusion_matrix_label_names;confusion_matrix_labels;dataset;error_analysis;hf_dataset;improvement_delta;macro_f1;measure;method;per_class_accuracy;reproducibility;score;seed;shot;synthetic_data
+  unique dataset=ag_news shot/sample_size=8 method=vanilla seed=4
+  dataset-shot-method n_runs: ag_news|8|vanilla=1
+- results_ag_news_safe/summary.json
+  kind=json size=1482 mtime=2026-06-26T02:10:09+00:00 lines=76
+  columns=metrics;shot_scaling_trend;summary
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/adapet/ADAPET/config/BoolQ.json
+  kind=json size=422 mtime=2026-06-25T09:12:41+00:00 lines=18
+  columns=batch_size;dataset;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/BoolQ shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/CB.json
+  kind=json size=444 mtime=2026-06-25T09:12:41+00:00 lines=19
+  columns=batch_size;dataset;dropout_rate;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/CB shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/COPA.json
+  kind=json size=446 mtime=2026-06-25T09:12:41+00:00 lines=19
+  columns=batch_size;dataset;dropout_rate;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/COPA shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/Generic.json
+  kind=json size=604 mtime=2026-06-25T09:12:41+00:00 lines=1
+  columns=batch_size;dataset;dict_verbalizer;eval_batch_size;eval_every;eval_train;generic_data_dir;grad_accumulation_factor;idx_txt_trim;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=generic shot/sample_size=- method=- seed=0
+- scripts/adapet/ADAPET/config/MultiRC.json
+  kind=json size=449 mtime=2026-06-25T09:12:41+00:00 lines=19
+  columns=batch_size;dataset;dropout_rate;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/MultiRC shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/RTE.json
+  kind=json size=445 mtime=2026-06-25T09:12:41+00:00 lines=19
+  columns=batch_size;dataset;dropout_rate;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/RTE shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/ReCoRD.json
+  kind=json size=448 mtime=2026-06-25T09:12:41+00:00 lines=19
+  columns=batch_size;dataset;dropout_rate;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/ReCoRD shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/WSC.json
+  kind=json size=420 mtime=2026-06-25T09:12:41+00:00 lines=18
+  columns=batch_size;dataset;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/WSC shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/WiC.json
+  kind=json size=420 mtime=2026-06-25T09:12:41+00:00 lines=18
+  columns=batch_size;dataset;dropout_rate;eval_batch_size;eval_every;eval_train;grad_accumulation_factor;lr;max_num_lbl_tok;max_text_length;num_batches;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=fewglue/WiC shot/sample_size=- method=- seed=42
+- scripts/adapet/ADAPET/config/sst-2.json
+  kind=json size=543 mtime=2026-06-25T09:12:41+00:00 lines=21
+  columns=batch_size;dataset;dict_verbalizer;eval_batch_size;eval_every;generic_data_dir;grad_accumulation_factor;idx_txt_trim;lr;mask_alpha;max_num_lbl_tok;max_text_length;num_batches;pattern;pattern_idx;pretrained_weight;seed;warmup_ratio;weight_decay
+  unique dataset=generic shot/sample_size=- method=- seed=42
+- scripts/setfit/checkpoints/checkpoint-8000/1_Pooling/config.json
+  kind=json size=296 mtime=2026-06-25T14:59:51+00:00 lines=10
+  columns=include_prompt;pooling_mode_cls_token;pooling_mode_lasttoken;pooling_mode_max_tokens;pooling_mode_mean_sqrt_len_tokens;pooling_mode_mean_tokens;pooling_mode_weightedmean_tokens;word_embedding_dimension
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/config.json
+  kind=json size=678 mtime=2026-06-25T14:59:51+00:00 lines=26
+  columns=_name_or_path;architectures;attention_probs_dropout_prob;classifier_dropout;gradient_checkpointing;hidden_act;hidden_dropout_prob;hidden_size;initializer_range;intermediate_size;layer_norm_eps;max_position_embeddings;model_type;num_attention_heads;num_hidden_layers;pad_token_id;position_embedding_type;torch_dtype;transformers_version;type_vocab_size;use_cache;vocab_size
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/config_sentence_transformers.json
+  kind=json size=201 mtime=2026-06-25T14:59:51+00:00 lines=10
+  columns=__version__;default_prompt_name;prompts;similarity_fn_name
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/modules.json
+  kind=json size=349 mtime=2026-06-25T14:59:51+00:00 lines=20
+  columns=idx;name;path;type
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/sentence_bert_config.json
+  kind=json size=53 mtime=2026-06-25T14:59:51+00:00 lines=4
+  columns=do_lower_case;max_seq_length
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/special_tokens_map.json
+  kind=json size=695 mtime=2026-06-25T14:59:51+00:00 lines=37
+  columns=cls_token;mask_token;pad_token;sep_token;unk_token
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/tokenizer.json
+  kind=json size=711649 mtime=2026-06-25T14:59:51+00:00 lines=30684
+  columns=added_tokens;decoder;model;normalizer;padding;post_processor;pre_tokenizer;truncation;version
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/tokenizer_config.json
+  kind=json size=1433 mtime=2026-06-25T14:59:51+00:00 lines=64
+  columns=added_tokens_decoder;clean_up_tokenization_spaces;cls_token;do_basic_tokenize;do_lower_case;mask_token;max_length;model_max_length;never_split;pad_to_multiple_of;pad_token;pad_token_type_id;padding_side;sep_token;stride;strip_accents;tokenize_chinese_chars;tokenizer_class;truncation_side;truncation_strategy;unk_token
+  unique dataset=- shot/sample_size=- method=- seed=-
+- scripts/setfit/checkpoints/checkpoint-8000/trainer_state.json
+  kind=json size=30456 mtime=2026-06-25T14:59:52+00:00 lines=1160
+  columns=best_metric;best_model_checkpoint;epoch;eval_steps;global_step;is_hyper_param_search;is_local_process_zero;is_world_process_zero;log_history;logging_steps;max_steps;num_input_tokens_seen;num_train_epochs;save_steps;stateful_callbacks;total_flos;train_batch_size;trial_name;trial_params
+  unique dataset=- shot/sample_size=- method=- seed=-
+
+Log Details
+- scripts/setfit/logs/ag_news_shot16_seed0_safe.log
+  size=26182 mtime=2026-06-26T02:03:28+00:00 lines=440
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=16 parsed_seed=0
+  completed_runs=ag_news|16|seed=0
+- scripts/setfit/logs/ag_news_shot16_seed1_safe.log
+  size=28105 mtime=2026-06-26T02:05:04+00:00 lines=472
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=16 parsed_seed=1
+  completed_runs=ag_news|16|seed=1
+- scripts/setfit/logs/ag_news_shot16_seed2_safe.log
+  size=27546 mtime=2026-06-26T02:06:45+00:00 lines=463
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=16 parsed_seed=2
+  completed_runs=ag_news|16|seed=2
+- scripts/setfit/logs/ag_news_shot16_seed3_safe.log
+  size=27988 mtime=2026-06-26T02:08:23+00:00 lines=470
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=16 parsed_seed=3
+  completed_runs=ag_news|16|seed=3
+- scripts/setfit/logs/ag_news_shot16_seed4_safe.log
+  size=28168 mtime=2026-06-26T02:10:09+00:00 lines=473
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=16 parsed_seed=4
+  completed_runs=ag_news|16|seed=4
+- scripts/setfit/logs/ag_news_shot4_seed0_safe.log
+  size=10261 mtime=2026-06-26T01:50:20+00:00 lines=176
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=4 parsed_seed=0
+  completed_runs=ag_news|4|seed=0
+- scripts/setfit/logs/ag_news_shot4_seed1_safe.log
+  size=10322 mtime=2026-06-26T01:51:28+00:00 lines=177
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=4 parsed_seed=1
+  completed_runs=ag_news|4|seed=1
+- scripts/setfit/logs/ag_news_shot4_seed2_safe.log
+  size=10272 mtime=2026-06-26T01:52:41+00:00 lines=176
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=4 parsed_seed=2
+  completed_runs=ag_news|4|seed=2
+- scripts/setfit/logs/ag_news_shot4_seed3_safe.log
+  size=10266 mtime=2026-06-26T01:53:53+00:00 lines=176
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=4 parsed_seed=3
+  completed_runs=ag_news|4|seed=3
+- scripts/setfit/logs/ag_news_shot4_seed4_safe.log
+  size=10321 mtime=2026-06-26T01:55:06+00:00 lines=177
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=4 parsed_seed=4
+  completed_runs=ag_news|4|seed=4
+- scripts/setfit/logs/ag_news_shot8_seed0_safe.log
+  size=16842 mtime=2026-06-26T01:56:23+00:00 lines=284
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=8 parsed_seed=0
+  completed_runs=ag_news|8|seed=0
+- scripts/setfit/logs/ag_news_shot8_seed1_safe.log
+  size=16964 mtime=2026-06-26T01:57:47+00:00 lines=286
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=8 parsed_seed=1
+  completed_runs=ag_news|8|seed=1
+- scripts/setfit/logs/ag_news_shot8_seed2_safe.log
+  size=16962 mtime=2026-06-26T01:59:09+00:00 lines=286
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=8 parsed_seed=2
+  completed_runs=ag_news|8|seed=2
+- scripts/setfit/logs/ag_news_shot8_seed3_safe.log
+  size=16737 mtime=2026-06-26T02:00:30+00:00 lines=282
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=8 parsed_seed=3
+  completed_runs=ag_news|8|seed=3
+- scripts/setfit/logs/ag_news_shot8_seed4_safe.log
+  size=17014 mtime=2026-06-26T02:01:48+00:00 lines=287
+  contains_completed=True contains_error=False parsed_dataset=ag_news parsed_shot=8 parsed_seed=4
+  completed_runs=ag_news|8|seed=4
+- scripts/setfit/logs/dev_3datasets_benchmark.log
+  size=682307 mtime=2026-06-25T11:01:47+00:00 lines=11532
+  contains_completed=True contains_error=True parsed_dataset=- parsed_shot=- parsed_seed=-
+  completed_runs=sst2|4|seed=0; sst2|4|seed=1; sst2|4|seed=2; sst2|4|seed=3; sst2|4|seed=4; sst2|8|seed=0; sst2|8|seed=1; sst2|8|seed=2; sst2|8|seed=3; sst2|8|seed=4; sst2|16|seed=0; sst2|16|seed=1; sst2|16|seed=2; sst2|16|seed=3; sst2|16|seed=4; ag_news|4|seed=0; ag_news|4|seed=1; ag_news|4|seed=2; ag_news|4|seed=3; ag_news|4|seed=4; ag_news|8|seed=0; ag_news|8|seed=1; ag_news|8|seed=2; ag_news|8|seed=3; ag_news|8|seed=4; ag_news|16|seed=0; ag_news|16|seed=1
+- scripts/setfit/logs/dev_3datasets_benchmark_bs4_20seeds.log
+  size=1263339 mtime=2026-06-25T12:11:51+00:00 lines=21212
+  contains_completed=True contains_error=True parsed_dataset=- parsed_shot=- parsed_seed=-
+  completed_runs=sst2|4|seed=0; sst2|4|seed=1; sst2|4|seed=2; sst2|4|seed=3; sst2|4|seed=4; sst2|8|seed=0; sst2|8|seed=1; sst2|8|seed=2; sst2|8|seed=3; sst2|8|seed=4; sst2|16|seed=0; sst2|16|seed=1; sst2|16|seed=2; sst2|16|seed=3; sst2|16|seed=4; ag_news|4|seed=0; ag_news|4|seed=1; ag_news|4|seed=2; ag_news|4|seed=3; ag_news|4|seed=4; ag_news|8|seed=0; ag_news|8|seed=1; ag_news|8|seed=2; ag_news|8|seed=3; ag_news|8|seed=4; ag_news|16|seed=0; ag_news|16|seed=1
+- scripts/setfit/logs/dev_trec_allshots_bs4_20seeds.log
+  size=5785400 mtime=2026-06-25T14:59:55+00:00 lines=94076
+  contains_completed=True contains_error=False parsed_dataset=- parsed_shot=- parsed_seed=-
+  completed_runs=trec|4|seed=0; trec|4|seed=1; trec|4|seed=2; trec|4|seed=3; trec|4|seed=4; trec|8|seed=0; trec|8|seed=1; trec|8|seed=2; trec|8|seed=3; trec|8|seed=4; trec|16|seed=0; trec|16|seed=1; trec|16|seed=2; trec|16|seed=3; trec|16|seed=4
+- scripts/setfit/logs/sst2_shot16_seed0_safe.log
+  size=310 mtime=2026-06-26T01:25:56+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=0
+- scripts/setfit/logs/sst2_shot16_seed1_safe.log
+  size=310 mtime=2026-06-26T01:26:24+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=1
+- scripts/setfit/logs/sst2_shot16_seed2_safe.log
+  size=310 mtime=2026-06-26T01:26:54+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=2
+- scripts/setfit/logs/sst2_shot16_seed3_safe.log
+  size=310 mtime=2026-06-26T01:27:24+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=3
+- scripts/setfit/logs/sst2_shot16_seed4_safe.log
+  size=310 mtime=2026-06-26T01:27:51+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=4
+- scripts/setfit/logs/sst2_shot16_seed5_safe.log
+  size=310 mtime=2026-06-26T01:28:22+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=5
+- scripts/setfit/logs/sst2_shot16_seed6_safe.log
+  size=310 mtime=2026-06-26T01:28:59+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=6
+- scripts/setfit/logs/sst2_shot16_seed7_safe.log
+  size=310 mtime=2026-06-26T01:29:29+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=7
+- scripts/setfit/logs/sst2_shot16_seed8_safe.log
+  size=35766 mtime=2026-06-26T01:31:12+00:00 lines=601
+  contains_completed=True contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=8
+  completed_runs=sst2|16|seed=8
+- scripts/setfit/logs/sst2_shot16_seed9_safe.log
+  size=35929 mtime=2026-06-26T01:32:53+00:00 lines=604
+  contains_completed=True contains_error=False parsed_dataset=sst2 parsed_shot=16 parsed_seed=9
+  completed_runs=sst2|16|seed=9
+- scripts/setfit/logs/sst2_shot4_seed0_safe.log
+  size=309 mtime=2026-06-26T01:15:54+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=0
+- scripts/setfit/logs/sst2_shot4_seed1_safe.log
+  size=309 mtime=2026-06-26T01:16:33+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=1
+- scripts/setfit/logs/sst2_shot4_seed2_safe.log
+  size=309 mtime=2026-06-26T01:17:00+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=2
+- scripts/setfit/logs/sst2_shot4_seed3_safe.log
+  size=309 mtime=2026-06-26T01:17:29+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=3
+- scripts/setfit/logs/sst2_shot4_seed4_safe.log
+  size=309 mtime=2026-06-26T01:17:57+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=4
+- scripts/setfit/logs/sst2_shot4_seed5_safe.log
+  size=309 mtime=2026-06-26T01:18:26+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=5
+- scripts/setfit/logs/sst2_shot4_seed6_safe.log
+  size=309 mtime=2026-06-26T01:18:57+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=6
+- scripts/setfit/logs/sst2_shot4_seed7_safe.log
+  size=309 mtime=2026-06-26T01:19:25+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=7
+- scripts/setfit/logs/sst2_shot4_seed8_safe.log
+  size=309 mtime=2026-06-26T01:19:55+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=8
+- scripts/setfit/logs/sst2_shot4_seed9_safe.log
+  size=309 mtime=2026-06-26T01:20:23+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=4 parsed_seed=9
+- scripts/setfit/logs/sst2_shot8_seed0_safe.log
+  size=309 mtime=2026-06-26T01:20:55+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=0
+- scripts/setfit/logs/sst2_shot8_seed1_safe.log
+  size=309 mtime=2026-06-26T01:21:24+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=1
+- scripts/setfit/logs/sst2_shot8_seed2_safe.log
+  size=309 mtime=2026-06-26T01:21:54+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=2
+- scripts/setfit/logs/sst2_shot8_seed3_safe.log
+  size=309 mtime=2026-06-26T01:22:26+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=3
+- scripts/setfit/logs/sst2_shot8_seed4_safe.log
+  size=309 mtime=2026-06-26T01:22:57+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=4
+- scripts/setfit/logs/sst2_shot8_seed5_safe.log
+  size=309 mtime=2026-06-26T01:23:26+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=5
+- scripts/setfit/logs/sst2_shot8_seed6_safe.log
+  size=309 mtime=2026-06-26T01:23:56+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=6
+- scripts/setfit/logs/sst2_shot8_seed7_safe.log
+  size=309 mtime=2026-06-26T01:24:27+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=7
+- scripts/setfit/logs/sst2_shot8_seed8_safe.log
+  size=309 mtime=2026-06-26T01:24:58+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=8
+- scripts/setfit/logs/sst2_shot8_seed9_safe.log
+  size=309 mtime=2026-06-26T01:25:26+00:00 lines=6
+  contains_completed=False contains_error=False parsed_dataset=sst2 parsed_shot=8 parsed_seed=9
