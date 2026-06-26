@@ -16,29 +16,31 @@ import numpy as np
 import torch
 from datasets import Dataset, concatenate_datasets, load_dataset
 from sentence_transformers import models
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, matthews_corrcoef
 from transformers.trainer_utils import set_seed
 
 from setfit import SetFitModel, SetFitTrainer
 from setfit.data import sample_dataset
-from setfit.utils import LOSS_NAME_TO_CLASS
+from setfit.utils import DEV_DATASET_TO_METRIC, LOSS_NAME_TO_CLASS, TEST_DATASET_TO_METRIC
 
 
 # ignore all future warnings
 simplefilter(action="ignore", category=FutureWarning)
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
-DEFAULT_DATASETS = ["sst2", "ag_news", "trec", "dbpedia"]
+DEFAULT_DATASETS = ["sst2"]
 DEFAULT_SHOTS = [4, 8, 16]
-DEFAULT_SEEDS = [0, 1, 2, 3, 4]
+DEFAULT_SEEDS = list(range(10))
 METHOD_VANILLA = "vanilla"
 METHOD_RANDOM = "random_aug"
-METHOD_ERROR = "augmented"
+METHOD_ERROR = "error_driven"
 METHODS = [METHOD_VANILLA, METHOD_RANDOM, METHOD_ERROR]
 DATASET_ALIASES = {
     "sst2": ["sst2"],
     "ag_news": ["ag_news"],
     "trec": ["TREC-QC", "trec"],
+    "TREC-QC": ["TREC-QC"],
+    "SentEval-CR": ["SentEval-CR"],
     "dbpedia": ["dbpedia", "dbpedia_14"],
 }
 
@@ -46,10 +48,12 @@ DATASET_ALIASES = {
 def parse_args():
     parser = argparse.ArgumentParser(description="Run a reproducible SetFit few-shot benchmark.")
     parser.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2")
-    parser.add_argument("--datasets", nargs="+", default=DEFAULT_DATASETS)
+    parser.add_argument("--datasets", nargs="+", default=None)
+    parser.add_argument("--is_dev_set", type=str_to_bool, nargs="?", const=True, default=False)
+    parser.add_argument("--is_test_set", type=str_to_bool, nargs="?", const=True, default=False)
     parser.add_argument("--sample_sizes", "--shots", dest="sample_sizes", type=int, nargs="+", default=DEFAULT_SHOTS)
     parser.add_argument("--seeds", type=int, nargs="+", default=DEFAULT_SEEDS)
-    parser.add_argument("--num_iterations", type=int, default=20)
+    parser.add_argument("--num_iterations", type=int, default=10)
     parser.add_argument("--num_epochs", type=int, default=1)
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--max_seq_length", type=int, default=128)
@@ -77,11 +81,30 @@ def parse_args():
     parser.add_argument("--random_synthetic_multiplier", type=float, default=1.0)
     parser.add_argument("--synthetic_samples_per_error_class", type=int, default=1)
     parser.add_argument("--max_synthetic_samples_per_class", type=int, default=16)
+    parser.add_argument("--synthetic_ratio", type=float, default=0.5)
 
     args = parser.parse_args()
-    if args.batch_size > 8:
-        raise ValueError("For 4GB GPU compatibility, --batch_size must be <= 8.")
+    args.datasets = ["sst2"]
+    args.num_iterations = min(args.num_iterations, 10)
+    args.batch_size = min(8, args.batch_size)
+    if args.synthetic_ratio < 0:
+        raise ValueError("--synthetic_ratio must be >= 0.")
     return args
+
+
+def str_to_bool(value) -> bool:
+    if isinstance(value, bool):
+        return value
+    normalized = value.lower()
+    if normalized in {"true", "1", "yes", "y"}:
+        return True
+    if normalized in {"false", "0", "no", "n"}:
+        return False
+    raise argparse.ArgumentTypeError(f"Expected a boolean value, got {value!r}.")
+
+
+def resolve_dataset_metrics(args) -> Dict[str, str]:
+    return {"sst2": "accuracy"}
 
 
 def set_reproducible_seed(seed: int) -> None:
@@ -140,8 +163,36 @@ def result_path(output_dir: pathlib.Path, dataset: str, shot: int, seed: int, me
     return result_dir(output_dir, dataset, shot, seed) / f"{method}.json"
 
 
+def result_path_candidates(output_dir: pathlib.Path, dataset: str, shot: int, seed: int, method: str) -> List[pathlib.Path]:
+    paths = [result_path(output_dir, dataset, shot, seed, method)]
+    if method == METHOD_ERROR and METHOD_ERROR != "augmented":
+        paths.append(result_dir(output_dir, dataset, shot, seed) / "augmented.json")
+    return paths
+
+
+def existing_result_path(output_dir: pathlib.Path, dataset: str, shot: int, seed: int, method: str) -> Optional[pathlib.Path]:
+    for path in result_path_candidates(output_dir, dataset, shot, seed, method):
+        if path.exists():
+            return path
+    return None
+
+
 def run_is_complete(output_dir: pathlib.Path, dataset: str, shot: int, seed: int) -> bool:
-    return all(result_path(output_dir, dataset, shot, seed, method).exists() for method in METHODS)
+    return all(existing_result_path(output_dir, dataset, shot, seed, method) is not None for method in METHODS)
+
+
+def load_existing_result_records(output_dir: pathlib.Path, dataset: str, shot: int, seed: int) -> Optional[List[dict]]:
+    records = []
+    for method in METHODS:
+        path = existing_result_path(output_dir, dataset, shot, seed, method)
+        if path is None:
+            return None
+        try:
+            records.append(json.loads(path.read_text(encoding="utf-8")))
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"Existing result unreadable, rerunning: dataset={dataset}, shot={shot}, seed={seed}, file={path}, error={exc}")
+            return None
+    return records
 
 
 def to_python_list(values):
@@ -185,19 +236,20 @@ def build_model(args, train_data: Dataset) -> SetFitModel:
     return model
 
 
-def train_setfit_model(args, train_data: Dataset, eval_data: Dataset, loss_class, seed: int):
+def train_setfit_model(args, train_data: Dataset, eval_data: Dataset, loss_class, seed: int, metric: str):
     set_reproducible_seed(seed)
     model = build_model(args, train_data)
     trainer = SetFitTrainer(
         model=model,
         train_dataset=train_data,
         eval_dataset=eval_data,
-        metric="accuracy",
+        metric=metric,
         loss_class=loss_class,
         batch_size=args.batch_size,
         num_epochs=args.num_epochs,
         num_iterations=args.num_iterations,
     )
+    trainer.args.dataloader_num_workers = 0
     if not args.eval_strategy:
         trainer.args.eval_strategy = "no"
     if args.classifier == "pytorch":
@@ -216,7 +268,7 @@ def train_setfit_model(args, train_data: Dataset, eval_data: Dataset, loss_class
     return trainer
 
 
-def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset) -> dict:
+def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset, metric: str) -> dict:
     y_true = [json_label(label) for label in eval_data["label"]]
     y_pred = [json_label(label) for label in to_python_list(model.predict(eval_data["text"], use_labels=False))]
     labels = sorted(set(y_true) | set(y_pred), key=lambda label: str(label))
@@ -225,6 +277,15 @@ def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset) -> dict:
     for idx, label in enumerate(labels):
         total = int(matrix[idx].sum())
         per_class_accuracy[str(label)] = float(matrix[idx][idx] / total * 100) if total else None
+    accuracy = float(accuracy_score(y_true, y_pred) * 100)
+    macro_f1 = float(f1_score(y_true, y_pred, average="macro", zero_division=0) * 100)
+    if metric == "matthews_correlation":
+        primary_score = float(matthews_corrcoef(y_true, y_pred) * 100)
+    elif metric == "macro_f1":
+        primary_score = macro_f1
+    else:
+        primary_score = accuracy
+
     errors = [
         {
             "text": text,
@@ -235,8 +296,10 @@ def compute_detailed_metrics(model: SetFitModel, eval_data: Dataset) -> dict:
         if true_label != pred_label
     ]
     return {
-        "accuracy": float(accuracy_score(y_true, y_pred) * 100),
-        "macro_f1": float(f1_score(y_true, y_pred, average="macro", zero_division=0) * 100),
+        "score": primary_score,
+        "measure": metric,
+        "accuracy": accuracy,
+        "macro_f1": macro_f1,
         "labels": [json_label(label) for label in labels],
         "label_names": get_label_names(labels, eval_data),
         "confusion_matrix": matrix.astype(int).tolist(),
@@ -311,9 +374,22 @@ def generate_random_synthetic_samples(
     return Dataset.from_dict({"text": texts, "label": synthetic_labels})
 
 
+def cap_synthetic_data(synthetic_data: Dataset, original_train_size: int, synthetic_ratio: float, seed: int) -> Dataset:
+    max_synthetic_size = min(original_train_size, int(original_train_size * synthetic_ratio))
+    if max_synthetic_size <= 0 or len(synthetic_data) == 0:
+        return Dataset.from_dict({"text": [], "label": []})
+    if len(synthetic_data) <= max_synthetic_size:
+        return synthetic_data
+    return synthetic_data.shuffle(seed=seed).select(range(max_synthetic_size))
+
+
 def create_augmented_train_data(train_data: Dataset, synthetic_data: Dataset) -> Dataset:
     train_core = train_data.select_columns(["text", "label"])
     synthetic_data = synthetic_data.cast(train_core.features)
+    max_train_size = 2 * len(train_core)
+    max_synthetic_size = max(0, max_train_size - len(train_core))
+    if len(synthetic_data) > max_synthetic_size:
+        synthetic_data = synthetic_data.select(range(max_synthetic_size))
     return concatenate_datasets([train_core, synthetic_data])
 
 
@@ -386,8 +462,8 @@ def make_result_record(
         "shot": shot,
         "seed": seed,
         "method": method,
-        "measure": "accuracy",
-        "score": details["accuracy"],
+        "measure": details["measure"],
+        "score": details["score"],
         "accuracy": details["accuracy"],
         "macro_f1": details["macro_f1"],
         "confusion_matrix": details["confusion_matrix"],
@@ -410,6 +486,7 @@ def make_result_record(
             "batch_size": args.batch_size,
             "max_seq_length": args.max_seq_length,
             "seed": seed,
+            "synthetic_ratio": args.synthetic_ratio,
         },
     }
     return record
@@ -421,19 +498,33 @@ def save_json(path: pathlib.Path, payload: dict) -> None:
         json.dump(payload, f_out, indent=2, sort_keys=True)
 
 
-def release_model(*objects) -> None:
-    for obj in objects:
-        del obj
+def cleanup_memory() -> None:
     gc.collect()
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
+    try:
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.ipc_collect()
+    except Exception:
+        pass
 
 
-def run_method(args, train_data: Dataset, test_data: Dataset, loss_class, seed: int) -> dict:
-    trainer = train_setfit_model(args, train_data, test_data, loss_class, seed)
-    details = compute_detailed_metrics(trainer.model, test_data)
-    release_model(trainer)
-    return details
+def release_model(*objects) -> None:
+    del objects
+    cleanup_memory()
+
+
+def run_method(args, train_data: Dataset, test_data: Dataset, loss_class, seed: int, metric: str) -> dict:
+    trainer = None
+    model = None
+    try:
+        trainer = train_setfit_model(args, train_data, test_data, loss_class, seed, metric)
+        model = trainer.model
+        details = compute_detailed_metrics(model, test_data, metric)
+        return details
+    finally:
+        del model
+        del trainer
+        cleanup_memory()
 
 
 def run_benchmark_case(
@@ -446,18 +537,27 @@ def run_benchmark_case(
     shot: int,
     seed: int,
     loss_class,
+    metric: str,
 ) -> List[dict]:
     if run_is_complete(output_dir, dataset, shot, seed) and not args.override_results:
-        print(f"Skipping finished run: dataset={dataset}, shot={shot}, seed={seed}")
-        return [json.loads(path.read_text(encoding="utf-8")) for path in [
-            result_path(output_dir, dataset, shot, seed, method) for method in METHODS
-        ]]
+        existing_records = load_existing_result_records(output_dir, dataset, shot, seed)
+        if existing_records is not None:
+            print(f"Skipping existing result: dataset={dataset}, shot={shot}, seed={seed}")
+            return existing_records
+
 
     print(f"\n=== dataset={dataset} shot={shot} seed={seed} ===")
     train_data = sample_dataset(full_train_data, num_samples=shot, seed=seed).select_columns(["text", "label"])
+    original_train_size = len(train_data)
+    print(
+        "Run config: "
+        f"dataset={dataset}, shot={shot}, seed={seed}, "
+        f"original_train_size={original_train_size}, synthetic_ratio={args.synthetic_ratio}"
+    )
 
     print("Training Vanilla SetFit")
-    vanilla_details = run_method(args, train_data, test_data, loss_class, seed)
+    vanilla_details = run_method(args, train_data, test_data, loss_class, seed, metric)
+    cleanup_memory()
     vanilla_record = make_result_record(
         args,
         dataset,
@@ -480,12 +580,24 @@ def run_benchmark_case(
         args.synthetic_samples_per_error_class,
         args.max_synthetic_samples_per_class,
     )
+    error_synthetic = cap_synthetic_data(error_synthetic, original_train_size, args.synthetic_ratio, seed)
     random_budget = int(round(len(error_synthetic) * args.random_synthetic_multiplier))
     random_synthetic = generate_random_synthetic_samples(train_data, test_data, seed, random_budget)
+    random_synthetic = cap_synthetic_data(random_synthetic, original_train_size, args.synthetic_ratio, seed)
+    print(
+        "Synthetic config: "
+        f"dataset={dataset}, shot={shot}, seed={seed}, "
+        f"original_train_size={original_train_size}, "
+        f"synthetic_size={len(error_synthetic)}, "
+        f"random_synthetic_size={len(random_synthetic)}, "
+        f"synthetic_ratio={args.synthetic_ratio}"
+    )
 
     print(f"Training Random Augmentation baseline ({len(random_synthetic)} synthetic samples)")
     random_train_data = create_augmented_train_data(train_data, random_synthetic)
-    random_details = run_method(args, random_train_data, test_data, loss_class, seed)
+    print(f"Random augmentation final_train_size={len(random_train_data)}")
+    random_details = run_method(args, random_train_data, test_data, loss_class, seed, metric)
+    cleanup_memory()
     random_record = make_result_record(
         args,
         dataset,
@@ -504,7 +616,9 @@ def run_benchmark_case(
 
     print(f"Training Error-driven Augmentation ({len(error_synthetic)} synthetic samples)")
     error_train_data = create_augmented_train_data(train_data, error_synthetic)
-    error_details = run_method(args, error_train_data, test_data, loss_class, seed)
+    print(f"Error-driven augmentation final_train_size={len(error_train_data)}")
+    error_details = run_method(args, error_train_data, test_data, loss_class, seed, metric)
+    cleanup_memory()
     error_record = make_result_record(
         args,
         dataset,
@@ -527,7 +641,12 @@ def run_benchmark_case(
         f"random={random_record['accuracy']:.3f}, "
         f"error-driven={error_record['accuracy']:.3f}"
     )
-    release_model(train_data, random_train_data, error_train_data, random_synthetic, error_synthetic)
+    del train_data
+    del random_train_data
+    del error_train_data
+    del random_synthetic
+    del error_synthetic
+    cleanup_memory()
     return [vanilla_record, random_record, error_record]
 
 
@@ -630,26 +749,33 @@ def main():
     loss_class = LOSS_NAME_TO_CLASS[args.loss]
     all_records = []
 
-    for dataset in args.datasets:
-        hf_dataset, full_train_data, test_data = load_setfit_dataset(dataset)
-        report_class_imbalance(dataset, test_data)
-        for shot in args.sample_sizes:
-            for seed in args.seeds:
-                records = run_benchmark_case(
-                    args,
-                    output_dir,
-                    dataset,
-                    hf_dataset,
-                    full_train_data,
-                    test_data,
-                    shot,
-                    seed,
-                    loss_class,
-                )
-                all_records.extend(records)
-        release_model(full_train_data, test_data)
+    dataset = "sst2"
+    metric = resolve_dataset_metrics(args)[dataset]
+    hf_dataset, full_train_data, test_data = load_setfit_dataset(dataset)
+    report_class_imbalance(dataset, test_data)
+    for shot in args.sample_sizes:
+        for seed in args.seeds:
+            records = run_benchmark_case(
+                args,
+                output_dir,
+                dataset,
+                hf_dataset,
+                full_train_data,
+                test_data,
+                shot,
+                seed,
+                loss_class,
+                metric,
+            )
+            all_records.extend(records)
+            del records
+            cleanup_memory()
+    del full_train_data
+    del test_data
+    cleanup_memory()
 
     summarize_results(output_dir, all_records)
+    cleanup_memory()
     print(f"\nBenchmark complete. Results saved to: {output_dir}")
 
 
@@ -658,4 +784,4 @@ if __name__ == "__main__":
 
 
 # Script was called via:
-# python run_fewshot.py --model sentence-transformers/all-MiniLM-L6-v2 --datasets sst2 ag_news trec --sample_sizes 4 8 16 --batch_size 4 --num_iterations 5 --num_epochs 1 --max_seq_length 128 --override_results
+# python run_fewshot.py --model sentence-transformers/all-MiniLM-L6-v2 --datasets sst2 --sample_sizes 16 --seeds 9 --is_dev_set true --batch_size 2 --num_iterations 10 --num_epochs 1 --max_seq_length 128

@@ -12,20 +12,21 @@ mkdir -p logs
 
 MODEL="sentence-transformers/all-MiniLM-L6-v2"
 BATCH_SIZE=2
-NUM_ITERATIONS=10
+NUM_ITERATIONS=5
 NUM_EPOCHS=1
 MAX_SEQ_LENGTH=128
+OUTPUT_DIR="../../results_ag_news_safe"
 
 echo "==== GPU CHECK ===="
 nvidia-smi || true
 
-echo "==== DEV BENCHMARK: sst2 only, split process ===="
+echo "==== AG News safe benchmark, split process ===="
 for SHOT in 4 8 16; do
-  for SEED in 0 1 2 3 4 5 6 7 8 9; do
-    echo "==== CASE: sst2 shot=${SHOT} seed=${SEED} ===="
+  for SEED in 0 1 2 3 4; do
+    echo "==== CASE: ag_news shot=${SHOT} seed=${SEED} ===="
     python run_fewshot.py \
       --model "$MODEL" \
-      --datasets sst2 \
+      --datasets ag_news \
       --sample_sizes "$SHOT" \
       --seeds "$SEED" \
       --is_dev_set true \
@@ -33,15 +34,16 @@ for SHOT in 4 8 16; do
       --num_iterations "$NUM_ITERATIONS" \
       --num_epochs "$NUM_EPOCHS" \
       --max_seq_length "$MAX_SEQ_LENGTH" \
-      2>&1 | tee "logs/sst2_shot${SHOT}_seed${SEED}_safe.log"
+      --output_dir "$OUTPUT_DIR" \
+      2>&1 | tee "logs/ag_news_shot${SHOT}_seed${SEED}_safe.log"
     sleep 5
     nvidia-smi || true
   done
 done
 
-echo "==== SUMMARIZE RESULTS ===="
+echo "==== SUMMARIZE AG News SAFE RESULTS ===="
 python summarize_aug_results.py \
-  --results_dir ../../results \
-  --output_dir ../../results
+  --results_dir "$OUTPUT_DIR" \
+  --output_dir "$OUTPUT_DIR"
 
 echo "==== DONE ===="

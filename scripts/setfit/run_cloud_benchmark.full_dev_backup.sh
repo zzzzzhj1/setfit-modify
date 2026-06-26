@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 MODEL="sentence-transformers/all-MiniLM-L6-v2"
 BATCH_SIZE=8
-NUM_ITERATIONS=20
+NUM_ITERATIONS=10
 NUM_EPOCHS=1
 MAX_SEQ_LENGTH=128
 

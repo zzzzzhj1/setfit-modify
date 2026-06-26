@@ -28,9 +28,9 @@ from setfit.utils import DEV_DATASET_TO_METRIC, LOSS_NAME_TO_CLASS, TEST_DATASET
 simplefilter(action="ignore", category=FutureWarning)
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
-DEFAULT_DATASETS = ["sst2", "ag_news", "trec", "dbpedia"]
+DEFAULT_DATASETS = ["sst2", "ag_news", "trec"]
 DEFAULT_SHOTS = [4, 8, 16]
-DEFAULT_SEEDS = [0, 1, 2, 3, 4]
+DEFAULT_SEEDS = list(range(10))
 METHOD_VANILLA = "vanilla"
 METHOD_RANDOM = "random_aug"
 METHOD_ERROR = "error_driven"
@@ -53,7 +53,7 @@ def parse_args():
     parser.add_argument("--is_test_set", type=str_to_bool, nargs="?", const=True, default=False)
     parser.add_argument("--sample_sizes", "--shots", dest="sample_sizes", type=int, nargs="+", default=DEFAULT_SHOTS)
     parser.add_argument("--seeds", type=int, nargs="+", default=DEFAULT_SEEDS)
-    parser.add_argument("--num_iterations", type=int, default=20)
+    parser.add_argument("--num_iterations", type=int, default=10)
     parser.add_argument("--num_epochs", type=int, default=1)
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--max_seq_length", type=int, default=128)
@@ -81,10 +81,24 @@ def parse_args():
     parser.add_argument("--random_synthetic_multiplier", type=float, default=1.0)
     parser.add_argument("--synthetic_samples_per_error_class", type=int, default=1)
     parser.add_argument("--max_synthetic_samples_per_class", type=int, default=16)
+    parser.add_argument("--synthetic_ratio", type=float, default=0.5)
+    parser.add_argument("--max_train_examples", type=int, default=None)
+    parser.add_argument("--max_synthetic_per_class", type=int, default=None)
 
     args = parser.parse_args()
-    if args.batch_size > 8:
-        raise ValueError("For 4GB GPU compatibility, --batch_size must be <= 8.")
+    allowed_datasets = {"sst2", "ag_news", "trec"}
+    requested_datasets = args.datasets or DEFAULT_DATASETS
+    normalized_datasets = []
+    for dataset in requested_datasets:
+        normalized = "ag_news" if dataset == "ag-news" else dataset
+        if normalized not in allowed_datasets:
+            raise ValueError(f"Only sst2, ag_news, and trec are supported, got {dataset!r}.")
+        normalized_datasets.append(normalized)
+    args.datasets = normalized_datasets
+    args.num_iterations = min(args.num_iterations, 10)
+    args.batch_size = min(8, args.batch_size)
+    if args.synthetic_ratio < 0:
+        raise ValueError("--synthetic_ratio must be >= 0.")
     return args
 
 
@@ -100,15 +114,7 @@ def str_to_bool(value) -> bool:
 
 
 def resolve_dataset_metrics(args) -> Dict[str, str]:
-    if args.datasets is not None:
-        return {dataset: "accuracy" for dataset in args.datasets}
-    if args.is_dev_set and args.is_test_set:
-        raise ValueError("Use only one of --is_dev_set true or --is_test_set true.")
-    if args.is_dev_set:
-        return dict(DEV_DATASET_TO_METRIC)
-    if args.is_test_set:
-        return dict(TEST_DATASET_TO_METRIC)
-    return {dataset: "accuracy" for dataset in DEFAULT_DATASETS}
+    return {dataset: "accuracy" for dataset in args.datasets}
 
 
 def set_reproducible_seed(seed: int) -> None:
@@ -225,6 +231,18 @@ def get_label_names(labels: List, dataset: Dataset) -> List[str]:
     return [get_label_name(label, dataset) for label in labels]
 
 
+def apply_dataset_safe_config(args, dataset: str) -> None:
+    if dataset != "ag_news":
+        return
+    args.batch_size = min(args.batch_size, 2)
+    args.num_epochs = 1
+    args.num_iterations = min(args.num_iterations, 5)
+    args.synthetic_ratio = 0.1
+    args.max_train_examples = 64
+    args.max_synthetic_per_class = 2
+    args.max_synthetic_samples_per_class = min(args.max_synthetic_samples_per_class, 2)
+
+
 def build_model(args, train_data: Dataset) -> SetFitModel:
     if args.classifier == "pytorch":
         model = SetFitModel.from_pretrained(
@@ -253,6 +271,7 @@ def train_setfit_model(args, train_data: Dataset, eval_data: Dataset, loss_class
         num_epochs=args.num_epochs,
         num_iterations=args.num_iterations,
     )
+    trainer.args.dataloader_num_workers = 0
     if not args.eval_strategy:
         trainer.args.eval_strategy = "no"
     if args.classifier == "pytorch":
@@ -377,10 +396,72 @@ def generate_random_synthetic_samples(
     return Dataset.from_dict({"text": texts, "label": synthetic_labels})
 
 
-def create_augmented_train_data(train_data: Dataset, synthetic_data: Dataset) -> Dataset:
+def balanced_downsample(dataset: Dataset, max_size: Optional[int], seed: int) -> Dataset:
+    if max_size is None or len(dataset) <= max_size:
+        return dataset
+
+    rng = random.Random(seed)
+    by_label = {}
+    for idx, label in enumerate(dataset["label"]):
+        by_label.setdefault(json_label(label), []).append(idx)
+
+    labels = sorted(by_label, key=lambda label: str(label))
+    selected = []
+    base_quota = max_size // len(labels)
+    remainder = max_size % len(labels)
+    leftovers = []
+    for label_idx, label in enumerate(labels):
+        indices = by_label[label][:]
+        rng.shuffle(indices)
+        quota = base_quota + (1 if label_idx < remainder else 0)
+        selected.extend(indices[:quota])
+        leftovers.extend(indices[quota:])
+
+    if len(selected) < max_size:
+        rng.shuffle(leftovers)
+        selected.extend(leftovers[: max_size - len(selected)])
+
+    selected = selected[:max_size]
+    rng.shuffle(selected)
+    return dataset.select(selected)
+
+
+def cap_synthetic_data(
+    synthetic_data: Dataset,
+    original_train_size: int,
+    synthetic_ratio: float,
+    seed: int,
+    max_synthetic_per_class: Optional[int] = None,
+) -> Dataset:
+    max_synthetic_size = min(original_train_size, int(original_train_size * synthetic_ratio))
+    if max_synthetic_size <= 0 or len(synthetic_data) == 0:
+        return Dataset.from_dict({"text": [], "label": []})
+
+    if max_synthetic_per_class is not None:
+        synthetic_data = balanced_downsample(
+            synthetic_data,
+            max_synthetic_per_class * len(set(synthetic_data["label"])),
+            seed,
+        )
+
+    if len(synthetic_data) <= max_synthetic_size:
+        return synthetic_data
+    return balanced_downsample(synthetic_data, max_synthetic_size, seed)
+
+
+def create_augmented_train_data(
+    train_data: Dataset,
+    synthetic_data: Dataset,
+    max_train_examples: Optional[int] = None,
+    seed: int = 0,
+) -> Dataset:
     train_core = train_data.select_columns(["text", "label"])
     synthetic_data = synthetic_data.cast(train_core.features)
-    return concatenate_datasets([train_core, synthetic_data])
+    max_train_size = 2 * len(train_core)
+    if max_train_examples is not None:
+        max_train_size = min(max_train_size, max_train_examples)
+    augmented = concatenate_datasets([train_core, synthetic_data])
+    return balanced_downsample(augmented, max_train_size, seed)
 
 
 def compute_improvement(baseline_details: dict, method_details: dict) -> dict:
@@ -476,6 +557,7 @@ def make_result_record(
             "batch_size": args.batch_size,
             "max_seq_length": args.max_seq_length,
             "seed": seed,
+            "synthetic_ratio": args.synthetic_ratio,
         },
     }
     return record
@@ -504,11 +586,14 @@ def release_model(*objects) -> None:
 
 def run_method(args, train_data: Dataset, test_data: Dataset, loss_class, seed: int, metric: str) -> dict:
     trainer = None
+    model = None
     try:
         trainer = train_setfit_model(args, train_data, test_data, loss_class, seed, metric)
-        details = compute_detailed_metrics(trainer.model, test_data, metric)
+        model = trainer.model
+        details = compute_detailed_metrics(model, test_data, metric)
         return details
     finally:
+        del model
         del trainer
         cleanup_memory()
 
@@ -534,6 +619,13 @@ def run_benchmark_case(
 
     print(f"\n=== dataset={dataset} shot={shot} seed={seed} ===")
     train_data = sample_dataset(full_train_data, num_samples=shot, seed=seed).select_columns(["text", "label"])
+    original_train_size = len(train_data)
+    print(
+        "Run config: "
+        f"dataset={dataset}, shot={shot}, seed={seed}, "
+        f"original_train_size={original_train_size}, synthetic_ratio={args.synthetic_ratio}, "
+        f"batch_size={args.batch_size}, max_train_examples={args.max_train_examples}"
+    )
 
     print("Training Vanilla SetFit")
     vanilla_details = run_method(args, train_data, test_data, loss_class, seed, metric)
@@ -560,11 +652,39 @@ def run_benchmark_case(
         args.synthetic_samples_per_error_class,
         args.max_synthetic_samples_per_class,
     )
+    error_synthetic = cap_synthetic_data(
+        error_synthetic,
+        original_train_size,
+        args.synthetic_ratio,
+        seed,
+        args.max_synthetic_per_class,
+    )
     random_budget = int(round(len(error_synthetic) * args.random_synthetic_multiplier))
     random_synthetic = generate_random_synthetic_samples(train_data, test_data, seed, random_budget)
+    random_synthetic = cap_synthetic_data(
+        random_synthetic,
+        original_train_size,
+        args.synthetic_ratio,
+        seed,
+        args.max_synthetic_per_class,
+    )
+    print(
+        "Synthetic config: "
+        f"dataset={dataset}, shot={shot}, seed={seed}, "
+        f"original_train_size={original_train_size}, "
+        f"synthetic_size={len(error_synthetic)}, "
+        f"random_synthetic_size={len(random_synthetic)}, "
+        f"synthetic_ratio={args.synthetic_ratio}, batch_size={args.batch_size}"
+    )
 
     print(f"Training Random Augmentation baseline ({len(random_synthetic)} synthetic samples)")
-    random_train_data = create_augmented_train_data(train_data, random_synthetic)
+    random_train_data = create_augmented_train_data(
+        train_data,
+        random_synthetic,
+        args.max_train_examples,
+        seed,
+    )
+    print(f"Random augmentation final_train_size={len(random_train_data)}")
     random_details = run_method(args, random_train_data, test_data, loss_class, seed, metric)
     cleanup_memory()
     random_record = make_result_record(
@@ -584,7 +704,13 @@ def run_benchmark_case(
     save_json(result_path(output_dir, dataset, shot, seed, METHOD_RANDOM), random_record)
 
     print(f"Training Error-driven Augmentation ({len(error_synthetic)} synthetic samples)")
-    error_train_data = create_augmented_train_data(train_data, error_synthetic)
+    error_train_data = create_augmented_train_data(
+        train_data,
+        error_synthetic,
+        args.max_train_examples,
+        seed,
+    )
+    print(f"Error-driven augmentation final_train_size={len(error_train_data)}")
     error_details = run_method(args, error_train_data, test_data, loss_class, seed, metric)
     cleanup_memory()
     error_record = make_result_record(
@@ -609,7 +735,12 @@ def run_benchmark_case(
         f"random={random_record['accuracy']:.3f}, "
         f"error-driven={error_record['accuracy']:.3f}"
     )
-    release_model(train_data, random_train_data, error_train_data, random_synthetic, error_synthetic)
+    del train_data
+    del random_train_data
+    del error_train_data
+    del random_synthetic
+    del error_synthetic
+    cleanup_memory()
     return [vanilla_record, random_record, error_record]
 
 
@@ -713,8 +844,27 @@ def main():
     all_records = []
 
     dataset_to_metric = resolve_dataset_metrics(args)
-
+    base_run_config = {
+        "batch_size": args.batch_size,
+        "num_epochs": args.num_epochs,
+        "num_iterations": args.num_iterations,
+        "synthetic_ratio": args.synthetic_ratio,
+        "max_train_examples": args.max_train_examples,
+        "max_synthetic_per_class": args.max_synthetic_per_class,
+        "max_synthetic_samples_per_class": args.max_synthetic_samples_per_class,
+    }
     for dataset, metric in dataset_to_metric.items():
+        for name, value in base_run_config.items():
+            setattr(args, name, value)
+        apply_dataset_safe_config(args, dataset)
+        print(
+            "Dataset config: "
+            f"dataset={dataset}, batch_size={args.batch_size}, "
+            f"num_iterations={args.num_iterations}, num_epochs={args.num_epochs}, "
+            f"synthetic_ratio={args.synthetic_ratio}, "
+            f"max_train_examples={args.max_train_examples}, "
+            f"max_synthetic_per_class={args.max_synthetic_per_class}"
+        )
         hf_dataset, full_train_data, test_data = load_setfit_dataset(dataset)
         report_class_imbalance(dataset, test_data)
         for shot in args.sample_sizes:
@@ -732,9 +882,14 @@ def main():
                     metric,
                 )
                 all_records.extend(records)
-        release_model(full_train_data, test_data)
+                del records
+                cleanup_memory()
+        del full_train_data
+        del test_data
+        cleanup_memory()
 
     summarize_results(output_dir, all_records)
+    cleanup_memory()
     print(f"\nBenchmark complete. Results saved to: {output_dir}")
 
 
